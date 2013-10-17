@@ -1,0 +1,93 @@
+#N canvas 365 221 915 444 10;
+#X obj 14 52 bng 30 250 50 0 \$0-midilooper1_gui_rec \$0-midilooper1_gui_rec_set
+rec 5 13 0 10 -262144 -1 -1;
+#X obj 16 28 hradio 21 1 0 6 \$0-midilooper1_gui_length \$0-midilooper1_gui_length_set
+empty 0 -8 0 10 -262144 -1 -1 2;
+#X obj 44 52 tgl 30 0 \$0-midilooper1_gui_rec_status \$0-midilooper1_gui_rec_status_set
+empty 6 12 0 10 -262144 -1 -1 0 1;
+#X obj 14 86 cnv 15 130 15 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 15 87 cnv 13 128 13 \$0-midilooper1_status_bar \$0-midilooper1_status_bar_set
+empty 20 12 0 14 -262144 -66577 0;
+#X obj 84 52 bng 30 250 50 0 \$0-midilooper1_gui_run \$0-midilooper1_gui_run_set
+run 5 13 0 10 -262144 -1 -1;
+#X obj 114 52 tgl 30 0 \$0-midilooper1_gui_run_status \$0-midilooper1_gui_run_status_set
+empty 6 12 0 10 -262144 -1 -1 0 1;
+#X obj 152 52 bng 30 250 50 0 \$0-midilooper2_gui_rec \$0-midilooper2_gui_rec_set
+rec 5 13 0 10 -262144 -1 -1;
+#X obj 154 28 hradio 21 1 0 6 \$0-midilooper2_gui_length \$0-midilooper2_gui_length_set
+empty 0 -8 0 10 -262144 -1 -1 2;
+#X obj 182 52 tgl 30 0 \$0-midilooper2_gui_rec_status \$0-midilooper2_gui_rec_status_set
+empty 6 12 0 10 -262144 -1 -1 0 1;
+#X obj 152 86 cnv 15 130 15 empty empty empty 20 12 0 14 -1 -66577
+0;
+#X obj 153 87 cnv 13 128 13 \$0-midilooper2_status_bar \$0-midilooper2_status_bar_set
+empty 20 12 0 14 -262144 -66577 0;
+#X obj 222 52 bng 30 250 50 0 \$0-midilooper2_gui_run \$0-midilooper2_gui_run_set
+run 5 13 0 10 -262144 -1 -1;
+#X obj 252 52 tgl 30 0 \$0-midilooper2_gui_run_status \$0-midilooper2_gui_run_status_set
+empty 6 12 0 10 -262144 -1 -1 0 1;
+#X obj 290 52 bng 30 250 50 0 \$0-midilooper3_gui_rec \$0-midilooper3_gui_rec_set
+rec 5 13 0 10 -262144 -1 -1;
+#X obj 292 28 hradio 21 1 0 6 \$0-midilooper3_gui_length \$0-midilooper3_gui_length_set
+empty 0 -8 0 10 -262144 -1 -1 2;
+#X obj 320 52 tgl 30 0 \$0-midilooper3_gui_rec_status \$0-midilooper3_gui_rec_status_set
+empty 6 12 0 10 -262144 -1 -1 0 1;
+#X obj 290 86 cnv 15 130 15 empty empty empty 20 12 0 14 -1 -66577
+0;
+#X obj 291 87 cnv 13 128 13 \$0-midilooper3_status_bar \$0-midilooper3_status_bar_set
+empty 20 12 0 14 -262144 -66577 0;
+#X obj 360 52 bng 30 250 50 0 \$0-midilooper3_gui_run \$0-midilooper3_gui_run_set
+run 5 13 0 10 -262144 -1 -1;
+#X obj 390 52 tgl 30 0 \$0-midilooper3_gui_run_status \$0-midilooper3_gui_run_status_set
+empty 6 12 0 10 -262144 -1 -1 0 1;
+#X obj 13 152 + 1;
+#X obj 13 127 r \$0-livelooper_gate;
+#X obj 13 248 outlet;
+#X obj 102 14 hradio 10 1 0 4 \$0-livelooper_gate \$0-livelooper_gate_set
+empty 0 -8 0 10 -262144 -1 -1 0;
+#X obj 106 248 outlet;
+#X obj 161 248 outlet;
+#X obj 254 248 outlet;
+#X obj 310 248 outlet;
+#X obj 403 248 outlet;
+#X obj 13 210 midilooper3 \$0 1;
+#X obj 358 149 inlet;
+#X obj 526 331 s \$0-livelooper_gate_set;
+#X obj 526 149 inlet;
+#X obj 526 182 route gate rec1 rec2 rec3 run1 run2 run3;
+#X obj 559 310 s \$0-midilooper1_gui_rec_set;
+#X obj 593 289 s \$0-midilooper2_gui_rec_set;
+#X obj 627 269 s \$0-midilooper3_gui_rec_set;
+#X obj 661 248 s \$0-midilooper1_gui_run_set;
+#X obj 695 228 s \$0-midilooper2_gui_run_set;
+#X obj 729 208 s \$0-midilooper3_gui_run_set;
+#X obj 13 177 gate 4 1 -------------------------------------------------
+;
+#X obj 456 194 midiparse;
+#X obj 456 248 outlet;
+#X obj 161 210 midilooper3 \$0 2;
+#X obj 310 210 midilooper3 \$0 3;
+#X connect 21 0 41 0;
+#X connect 22 0 21 0;
+#X connect 30 0 23 0;
+#X connect 30 1 25 0;
+#X connect 31 0 41 1;
+#X connect 33 0 34 0;
+#X connect 34 0 32 0;
+#X connect 34 1 35 0;
+#X connect 34 2 36 0;
+#X connect 34 3 37 0;
+#X connect 34 4 38 0;
+#X connect 34 5 39 0;
+#X connect 34 6 40 0;
+#X connect 41 0 30 0;
+#X connect 41 1 44 0;
+#X connect 41 2 45 0;
+#X connect 41 3 42 0;
+#X connect 42 0 43 0;
+#X connect 44 0 26 0;
+#X connect 44 1 27 0;
+#X connect 45 0 28 0;
+#X connect 45 1 29 0;
+#X coords 0 -1 1 1 415 98 1 10 10;

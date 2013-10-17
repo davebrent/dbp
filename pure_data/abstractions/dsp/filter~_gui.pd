@@ -1,0 +1,79 @@
+#N canvas 43 119 621 529 10;
+#X obj 90 258 mtof;
+#X obj 90 280 sig~;
+#X obj 138 322 * 2.95;
+#X obj 138 301 mid2dec;
+#X obj 138 344 + 0.05;
+#X obj 138 367 sig~;
+#X obj 90 236 r \$0-frequency;
+#X obj 138 276 r \$0-q;
+#N canvas 240 223 450 300 filter 0;
+#X obj 30 103 inlet~;
+#X obj 62 225 outlet~;
+#X obj 62 192 mux~ 1 2 3;
+#X obj 112 103 inlet~;
+#X obj 193 103 inlet~;
+#X obj 34 37 r \$0-type;
+#X obj 30 154 vcf_lp4~;
+#X obj 90 154 vcf_hp4~;
+#X obj 148 154 vcf_bp4~;
+#X connect 0 0 6 0;
+#X connect 0 0 7 0;
+#X connect 0 0 8 0;
+#X connect 2 0 1 0;
+#X connect 3 0 6 1;
+#X connect 3 0 7 1;
+#X connect 3 0 8 1;
+#X connect 4 0 6 2;
+#X connect 4 0 7 2;
+#X connect 4 0 8 2;
+#X connect 5 0 2 0;
+#X connect 6 0 2 0;
+#X connect 7 0 2 1;
+#X connect 8 0 2 2;
+#X restore 65 392 pd filter;
+#X obj 65 196 inlet~;
+#X obj 65 436 outlet~;
+#X obj 7 8 cnv 15 10 10 empty \$0-label empty 0 0 0 9 -262144 -1 0
+;
+#X obj 355 287 f \$0;
+#X obj 355 227 loadbang;
+#X obj 355 257 t b b;
+#X obj 355 317 pack f s;
+#X obj 400 287 symbol \$1;
+#X msg 355 347 \; \$1-frequency_set 100 \; \$1-q_set 32 \; \$1-slope_set
+1 \; \$1-type_set 0 \; \$1-label label \$2 \;;
+#X obj 8 18 hsl 128 15 0 127 0 0 \$0-frequency \$0-frequency_set FREQUENCY
+20 7 0 9 -262144 -1 -1 10000 1;
+#X obj 8 39 hsl 128 15 0 127 0 0 \$0-q \$0-q_set Q 20 7 0 9 -262144
+-1 -1 3200 1;
+#X obj 177 18 vradio 12 1 0 3 \$0-type \$0-type_set empty 0 -8 0 10
+-262144 -1 -1 0;
+#X obj 192 20 cnv 10 10 10 empty empty LOWPASS 0 4 0 7 -262144 -1 0
+;
+#X obj 192 33 cnv 10 10 10 empty empty HIGHPASS 0 4 0 7 -262144 -1
+0;
+#X obj 192 46 cnv 10 10 10 empty empty BANDPASS 0 4 0 7 -262144 -1
+0;
+#X obj 144 18 vradio 12 1 0 3 \$0-slope \$0-slope_set empty 0 -8 0
+10 -262144 -1 -1 1;
+#X obj 159 20 cnv 10 10 10 empty empty 2dB 0 4 0 7 -262144 -1 0;
+#X obj 159 33 cnv 10 10 10 empty empty 4dB 0 4 0 7 -262144 -1 0;
+#X obj 159 46 cnv 10 10 10 empty empty 8dB 0 4 0 7 -262144 -1 0;
+#X connect 0 0 1 0;
+#X connect 1 0 8 1;
+#X connect 2 0 4 0;
+#X connect 3 0 2 0;
+#X connect 4 0 5 0;
+#X connect 5 0 8 2;
+#X connect 6 0 0 0;
+#X connect 7 0 3 0;
+#X connect 8 0 10 0;
+#X connect 9 0 8 0;
+#X connect 12 0 15 0;
+#X connect 13 0 14 0;
+#X connect 14 0 12 0;
+#X connect 14 1 16 0;
+#X connect 15 0 17 0;
+#X connect 16 0 15 1;
+#X coords 0 -1 1 1 230 60 2 0 0;

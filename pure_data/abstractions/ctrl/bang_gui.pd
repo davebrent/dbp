@@ -1,0 +1,31 @@
+#N canvas 143 218 450 300 10;
+#X obj 4 5 bng 20 250 50 0 \$0-bang \$0-bang_set empty 17 7 0 10 -262144
+-1 -1;
+#X obj 27 5 nbx 4 20 -1e+37 1e+37 0 0 \$0-dur \$0-dur_set empty 0 -8
+0 10 -262144 -1 -1 0 256;
+#X obj 110 71 r \$0-bang;
+#X obj 110 181 outlet;
+#X obj 140 111 delay;
+#X obj 140 141 f 0;
+#X obj 110 141 f 1;
+#X obj 7 30 hsl 66 15 0 127 0 0 \$0-length \$0-length_set empty -2
+-8 0 10 -262144 -1 -1 0 1;
+#X obj 217 34 r \$0-length;
+#X obj 217 64 mid2dec;
+#X obj 217 124 s \$0-dur_set;
+#X obj 217 94 * 9000;
+#X obj 110 31 inlet;
+#X obj 167 31 inlet;
+#X connect 2 0 4 0;
+#X connect 2 0 6 0;
+#X connect 4 0 5 0;
+#X connect 5 0 3 0;
+#X connect 6 0 3 0;
+#X connect 8 0 9 0;
+#X connect 9 0 11 0;
+#X connect 11 0 4 1;
+#X connect 11 0 10 0;
+#X connect 12 0 6 0;
+#X connect 12 0 4 0;
+#X connect 13 0 4 1;
+#X coords 0 -1 1 1 80 50 2 0 0;

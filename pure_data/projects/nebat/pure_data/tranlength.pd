@@ -1,0 +1,18 @@
+#N canvas 606 273 481 345 10;
+#X obj 87 24 r [dp]_len;
+#X obj 87 53 unpack f f f f f f;
+#X obj 20 116 outlet;
+#X obj 65 116 outlet;
+#X obj 110 116 outlet;
+#X obj 155 116 outlet;
+#X obj 199 116 outlet;
+#X obj 244 116 outlet;
+#X text 159 23 every 16th (sent from transport);
+#X text 209 51 position;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 1 1 3 0;
+#X connect 1 2 4 0;
+#X connect 1 3 5 0;
+#X connect 1 4 6 0;
+#X connect 1 5 7 0;

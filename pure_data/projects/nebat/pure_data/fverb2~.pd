@@ -1,0 +1,58 @@
+#N canvas 166 210 935 457 10;
+#X obj 200 332 freeverb~;
+#X msg 53 182 roomsize \$1;
+#X msg 53 272 damping \$1;
+#X msg 53 365 width \$1;
+#X obj 200 273 inlet~;
+#X obj 251 273 inlet~;
+#X obj 53 226 r \$0-reverb_damp;
+#X obj 53 138 r \$0-reverb_size;
+#X obj 53 316 r \$0-reverb_wide;
+#X obj 53 160 mid2dec;
+#X obj 53 249 mid2dec;
+#X obj 53 340 mid2dec;
+#X obj 200 399 outlet~;
+#X obj 252 398 outlet~;
+#X obj 545 58 knob 32 32 0 127 0 0 \$0-reverb_size \$0-reverb_size_set
+size 5 -8 192 8 -262144 -1 -1 1172 1;
+#X obj 585 58 knob 32 32 0 127 0 0 \$0-reverb_damp \$0-reverb_damp_set
+damp 5 -8 192 8 -262144 -1 -1 586 1;
+#X obj 625 58 knob 32 32 0 127 0 0 \$0-reverb_wide \$0-reverb_wide_set
+wide 5 -8 192 8 -262144 -1 -1 1562 1;
+#X obj 493 150 loadbang;
+#X obj 489 172 f \$0;
+#X msg 484 195 \; \$1-reverb_size_set 48 \; \$1-reverb_damp_set 24
+\; \$1-reverb_wide_set 64 \;;
+#X msg 335 296 wet 1;
+#X obj 339 261 loadbang;
+#X obj 714 44 inlet;
+#X obj 705 116 route size damp wide;
+#X obj 668 255 s \$0-reverb_size_set;
+#X obj 695 234 s \$0-reverb_damp_set;
+#X obj 749 200 s \$0-reverb_wide_set;
+#X obj 255 366 hip~ 5;
+#X obj 195 366 hip~ 5;
+#X connect 0 0 28 0;
+#X connect 0 1 27 0;
+#X connect 1 0 0 0;
+#X connect 2 0 0 0;
+#X connect 3 0 0 0;
+#X connect 4 0 0 0;
+#X connect 5 0 0 1;
+#X connect 6 0 10 0;
+#X connect 7 0 9 0;
+#X connect 8 0 11 0;
+#X connect 9 0 1 0;
+#X connect 10 0 2 0;
+#X connect 11 0 3 0;
+#X connect 17 0 18 0;
+#X connect 18 0 19 0;
+#X connect 20 0 0 0;
+#X connect 21 0 20 0;
+#X connect 22 0 23 0;
+#X connect 23 0 24 0;
+#X connect 23 1 25 0;
+#X connect 23 2 26 0;
+#X connect 27 0 13 0;
+#X connect 28 0 12 0;
+#X coords 0 -1 1 1 123 68 1 540 30;

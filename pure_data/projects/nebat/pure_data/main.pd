@@ -1,0 +1,18 @@
+#N canvas 176 22 1068 696 10;
+#X obj 536 669 dac~;
+#X obj 16 39 main_app;
+#X obj 16 12 midiin;
+#X obj 562 639 *~;
+#X obj 532 639 *~;
+#X obj 570 669 mid2dec;
+#X obj 630 670 hsl 128 15 0 127 0 0 empty empty MASTER_VOLUME -2 -8
+0 10 -262144 -1 -1 0 1;
+#X text 65 12 << The best way to interact with the patch;
+#X connect 1 0 4 0;
+#X connect 1 1 3 0;
+#X connect 2 0 1 0;
+#X connect 3 0 0 1;
+#X connect 4 0 0 0;
+#X connect 5 0 3 1;
+#X connect 5 0 4 1;
+#X connect 6 0 5 0;

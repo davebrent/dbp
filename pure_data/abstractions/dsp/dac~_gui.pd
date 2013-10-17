@@ -1,0 +1,65 @@
+#N canvas 51 159 574 488 10;
+#X obj 191 23 inlet~;
+#X obj 251 23 inlet~;
+#X obj 191 133 *~ 0;
+#X obj 251 133 *~ 0;
+#X obj 211 173 dac~;
+#X obj 44 7 tgl 20 0 \$0-gui_power \$0-gui_power_set DAC 2 9 0 9 -262144
+-1 -1 0 1;
+#X obj 5 9 vu 15 80 \$0-gui_left empty -1 -8 0 10 -262144 -1 0 0;
+#X obj 25 9 vu 15 80 \$0-gui_right empty -1 -8 0 10 -262144 -1 0 0
+;
+#X obj 264 173 env~;
+#X obj 171 173 env~;
+#X obj 171 233 s \$0-gui_left;
+#X obj 264 233 s \$0-gui_right;
+#X obj 272 103 mid2dec;
+#X obj 44 32 vsl 20 56 0 127 0 0 \$0-volume \$0-volume_set empty 0
+-9 0 10 -262144 -1 -1 0 1;
+#X obj 272 73 r \$0-volume;
+#N canvas 0 22 450 300 (subpatch) 0;
+#X array LEFT 100 float 1;
+#A 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0;
+#X coords 0 1 99 -1 100 28 1;
+#X restore 68 19 graph;
+#N canvas 0 22 450 300 (subpatch) 0;
+#X array RIGHT 100 float 1;
+#A 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0;
+#X coords 0 1 99 -1 100 28 1;
+#X restore 68 63 graph;
+#X obj 61 213 tabwrite~ LEFT;
+#X obj 61 233 tabwrite~ RIGHT;
+#X obj 61 153 loadbang;
+#X obj 61 173 f 1;
+#X obj 366 73 r \$0-gui_power;
+#X obj 61 193 metro 2;
+#X msg 366 103 \; pd dsp \$1 \;;
+#X obj 171 203 - 100;
+#X obj 264 203 - 100;
+#X connect 0 0 2 0;
+#X connect 1 0 3 0;
+#X connect 2 0 4 0;
+#X connect 2 0 9 0;
+#X connect 2 0 17 0;
+#X connect 3 0 4 1;
+#X connect 3 0 8 0;
+#X connect 3 0 18 0;
+#X connect 8 0 25 0;
+#X connect 9 0 24 0;
+#X connect 12 0 3 1;
+#X connect 12 0 2 1;
+#X connect 14 0 12 0;
+#X connect 19 0 20 0;
+#X connect 20 0 22 0;
+#X connect 21 0 23 0;
+#X connect 22 0 17 0;
+#X connect 22 0 18 0;
+#X connect 24 0 10 0;
+#X connect 25 0 11 0;
+#X coords 0 -1 1 1 172 96 2 0 0;

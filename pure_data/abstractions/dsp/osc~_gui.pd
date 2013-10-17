@@ -1,0 +1,51 @@
+#N canvas 62 85 414 423 10;
+#X obj 26 121 pitchquant;
+#X obj 26 151 mtof;
+#X obj 9 19 hsl 128 15 0 127 0 0 \$0-decay \$0-decay_set DECAY 20 7
+0 10 -262144 -1 -1 1900 1;
+#X obj 26 211 osc~;
+#X obj 66 211 ead~ 2 100;
+#X obj 26 341 *~;
+#X obj 26 181 t b f;
+#X obj 123 131 r \$0-decay;
+#X obj 26 91 inlet;
+#X obj 66 91 inlet;
+#X obj 106 91 inlet;
+#X obj 66 311 *~ 1;
+#X obj 26 371 outlet~;
+#X obj 9 39 hsl 128 15 0 127 0 0 \$0-gain \$0-gain_set VOLUME 20 7
+0 10 -262144 -1 -1 5700 1;
+#X obj 87 248 r \$0-gain;
+#X obj 280 237 loadbang;
+#X obj 280 257 f \$0;
+#X obj 144 19 nbx 4 15 -1e+37 1e+37 0 0 \$0-decay_gui \$0-decay_gui_set
+empty 0 -8 0 10 -262144 -1 -1 149.606 256;
+#X obj 123 161 mid2dec;
+#X obj 123 181 * 1000;
+#X obj 87 278 mid2dec;
+#X obj 144 39 nbx 4 15 -1e+37 1e+37 0 0 \$0-gain_gui \$0-gain_gui_set
+empty 0 -8 0 10 -262144 -1 -1 0.448819 256;
+#X obj 107 311 s \$0-gain_gui_set;
+#X obj 140 211 s \$0-decay_gui_set;
+#X msg 280 278 \; \$1-decay_set 64 \; \$1-gain_set 127 \;;
+#X connect 0 0 1 0;
+#X connect 1 0 6 0;
+#X connect 3 0 5 0;
+#X connect 4 0 11 0;
+#X connect 5 0 12 0;
+#X connect 6 0 4 0;
+#X connect 6 1 3 0;
+#X connect 7 0 18 0;
+#X connect 8 0 0 0;
+#X connect 9 0 0 1;
+#X connect 10 0 0 2;
+#X connect 11 0 5 1;
+#X connect 14 0 20 0;
+#X connect 15 0 16 0;
+#X connect 16 0 24 0;
+#X connect 18 0 19 0;
+#X connect 19 0 4 2;
+#X connect 19 0 23 0;
+#X connect 20 0 11 1;
+#X connect 20 0 22 0;
+#X coords 0 -1 1 1 196 60 1 0 0;

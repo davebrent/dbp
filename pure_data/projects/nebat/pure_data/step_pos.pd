@@ -1,0 +1,11 @@
+#N canvas 440 128 450 300 10;
+#X obj 58 102 int \$1;
+#X obj 58 76 t b f;
+#X obj 58 129 pack;
+#X obj 58 53 r \$2-stepseq_step\$1;
+#X obj 58 155 s \$2-stepseq_position;
+#X connect 0 0 2 0;
+#X connect 1 0 0 0;
+#X connect 1 1 2 1;
+#X connect 2 0 4 0;
+#X connect 3 0 1 0;

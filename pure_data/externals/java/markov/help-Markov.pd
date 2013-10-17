@@ -1,0 +1,39 @@
+#N canvas 673 30 545 623 10;
+#X obj 35 437 print;
+#X obj 104 378 nbx 5 15 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 6 256;
+#X obj 35 198 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 55 347 dump 0 2 3 4 5 0 3 2 5 4 0 5 4;
+#X obj 55 266 random 10;
+#X obj 55 225 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X floatatom 55 287 5 0 0 0 - - -;
+#X msg 55 317 reset;
+#X text 164 376 <= Order;
+#X text 104 316 <= Reset the markov chain;
+#X text 54 196 <= Bang to generate a number;
+#X text 35 576 Dave Poulter 2010;
+#X text 33 23 DESCRIPTION: Generating weighted random numbers;
+#X text 33 53 INLET 0 BANG: Output new float;
+#X text 81 73 FLOAT: Analyse and store occurence;
+#X text 81 93 RESET: Clears the markov chain;
+#X text 33 143 INLET 1 FLOAT: Sets the order of the chain (also resets
+it);
+#X text 81 113 DUMP: Followed by a list analyse sequence;
+#X obj 35 407 pdj Markov 1;
+#X text 33 483 NOTE: Needs a creation argument to set the order of
+the chain;
+#X text 35 586 dapoulter@gmail.com;
+#X obj 55 246 metro 500;
+#X text 254 346 <= Analyse a whole sequence quickly;
+#X text 94 286 <= Analyse numbers as they come;
+#X connect 1 0 18 1;
+#X connect 2 0 18 0;
+#X connect 3 0 18 0;
+#X connect 4 0 6 0;
+#X connect 5 0 21 0;
+#X connect 6 0 18 0;
+#X connect 7 0 18 0;
+#X connect 18 0 0 0;
+#X connect 21 0 4 0;

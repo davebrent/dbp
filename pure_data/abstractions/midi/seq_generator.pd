@@ -1,0 +1,46 @@
+#N canvas 530 178 697 412 10;
+#X obj 20 20 vradio 15 1 0 3 \$0-generator-type \$0-generator-type-gui
+empty 0 -8 0 10 -262144 -1 -1 0;
+#X obj 249 188 gate 3;
+#X obj 249 288 outlet;
+#X obj 222 65 r \$0-generator-type;
+#X obj 222 85 + 1;
+#X obj 138 20 nbx 5 14 -1e+37 1e+37 0 0 \$0-generator-x \$0-generator-x-gui
+empty 0 -8 0 10 -262144 -1 -1 0 256;
+#X obj 138 34 nbx 5 14 -1e+37 1e+37 0 0 \$0-generator-y \$0-generator-y-gui
+empty 0 -8 0 10 -262144 -1 -1 0 256;
+#X obj 222 10 inlet;
+#X obj 222 35 s \$0-generator-type-gui;
+#X obj 222 115 t b f;
+#X obj 282 165 f;
+#X obj 282 115 r \$0-generator-x;
+#X obj 298 135 r \$0-generator-y;
+#X obj 374 10 inlet;
+#X obj 374 35 s \$0-generator-x-gui;
+#X obj 508 6 inlet;
+#X obj 508 35 s \$0-generator-y-gui;
+#X text 123 18 x;
+#X text 123 32 y;
+#X text 43 18 graycode;
+#X text 43 34 euclidean;
+#X text 43 50 binary;
+#X obj 249 218 dp_graycode;
+#X obj 265 238 dp_bjorklund;
+#X obj 282 258 dp_binary;
+#X connect 1 0 22 0;
+#X connect 1 1 23 0;
+#X connect 1 2 24 0;
+#X connect 3 0 4 0;
+#X connect 4 0 9 0;
+#X connect 7 0 8 0;
+#X connect 9 0 10 0;
+#X connect 9 1 1 0;
+#X connect 10 0 1 1;
+#X connect 11 0 10 0;
+#X connect 12 0 23 1;
+#X connect 13 0 14 0;
+#X connect 15 0 16 0;
+#X connect 22 0 2 0;
+#X connect 23 0 2 0;
+#X connect 24 0 2 0;
+#X coords 0 -1 1 1 192 65 2 10 10;

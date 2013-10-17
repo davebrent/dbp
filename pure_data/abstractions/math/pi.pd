@@ -1,0 +1,11 @@
+#N canvas 741 181 164 202 10;
+#X obj 29 112 expr 4*atan(1);
+#X obj 29 32 inlet;
+#X obj 29 82 b;
+#X obj 29 152 outlet;
+#X obj 69 32 loadbang;
+#X text 59 82 Bang for PI;
+#X connect 0 0 3 0;
+#X connect 1 0 2 0;
+#X connect 2 0 0 0;
+#X connect 4 0 2 0;

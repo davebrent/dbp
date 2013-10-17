@@ -1,0 +1,124 @@
+#N canvas 90 128 1163 583 10;
+#X obj 647 30 vsl 24 60 0 127 0 0 \$0-mixer_1_gain \$0-mixer_1_gain_set
+1 7 50 0 20 -262144 -1 -1 4646 1;
+#X obj 677 68 knob 24 24 0 127 0 0 \$0-mixer_1_pan \$0-mixer_1_pan_set
+pan 4 16 192 8 -262144 -1 -1 1177 1;
+#X obj 645 95 tgl 15 0 \$0-mixer_1_mute \$0-mixer_1_mute_set empty
+17 7 0 10 -262144 -1 -1 0 1;
+#X obj 660 95 bng 15 250 50 0 \$0-mixer_1_reset \$0-mixer_1_reset_set
+empty 17 7 0 10 -262144 -1 -1;
+#X obj 707 30 vsl 24 60 0 127 0 0 \$0-mixer_2_gain \$0-mixer_2_gain_set
+2 7 50 0 20 -262144 -1 -1 4646 1;
+#X obj 737 68 knob 24 24 0 127 0 0 \$0-mixer_2_pan \$0-mixer_2_pan_set
+pan 4 16 192 8 -262144 -1 -1 1177 1;
+#X obj 705 95 tgl 15 0 \$0-mixer_2_mute \$0-mixer_2_mute_set empty
+17 7 0 10 -262144 -1 -1 0 1;
+#X obj 720 95 bng 15 250 50 0 \$0-mixer_2_reset \$0-mixer_2_reset_set
+empty 17 7 0 10 -262144 -1 -1;
+#X obj 767 30 vsl 24 60 0 127 0 0 \$0-mixer_3_gain \$0-mixer_3_gain_set
+3 7 50 0 20 -262144 -1 -1 4646 1;
+#X obj 797 68 knob 24 24 0 127 0 0 \$0-mixer_3_pan \$0-mixer_3_pan_set
+pan 4 16 192 8 -262144 -1 -1 1177 1;
+#X obj 765 95 tgl 15 0 \$0-mixer_3_mute \$0-mixer_3_mute_set empty
+17 7 0 10 -262144 -1 -1 0 1;
+#X obj 780 95 bng 15 250 50 0 \$0-mixer_3_reset \$0-mixer_3_reset_set
+empty 17 7 0 10 -262144 -1 -1;
+#X obj 827 30 vsl 24 60 0 127 0 0 \$0-mixer_4_gain \$0-mixer_4_gain_set
+4 7 50 0 20 -262144 -1 -1 4646 1;
+#X obj 857 68 knob 24 24 0 127 0 0 \$0-mixer_4_pan \$0-mixer_4_pan_set
+pan 4 16 192 8 -262144 -1 -1 1177 1;
+#X obj 825 95 tgl 15 0 \$0-mixer_4_mute \$0-mixer_4_mute_set empty
+17 7 0 10 -262144 -1 -1 0 1;
+#X obj 840 95 bng 15 250 50 0 \$0-mixer_4_reset \$0-mixer_4_reset_set
+empty 17 7 0 10 -262144 -1 -1;
+#X obj 902 30 vsl 24 60 0 127 0 0 \$0-mixer_9_gain \$0-mixer_9_gain_set
+M 7 50 0 20 -262144 -1 -1 4646 1;
+#X obj 932 68 knob 24 24 0 127 0 0 \$0-mixer_9_pan \$0-mixer_9_pan_set
+pan 4 16 192 8 -262144 -1 -1 1177 1;
+#X obj 900 95 tgl 15 0 \$0-mixer_9_mute \$0-mixer_9_mute_set empty
+17 7 0 10 -262144 -1 -1 0 1;
+#X obj 971 30 vu 15 80 \$0-mixer_vu_left empty -1 -8 0 10 -262144 -1
+0 0;
+#X obj 442 152 env~;
+#X obj 442 172 - 100;
+#X obj 988 30 vu 15 80 \$0-mixer_vu_right empty -1 -8 0 10 -262144
+-1 0 0;
+#X obj 372 152 env~;
+#X obj 372 172 - 100;
+#X obj 229 215 outlet~;
+#X obj 304 215 outlet~;
+#X obj 372 201 s \$0-mixer_vu_left;
+#X obj 442 227 s \$0-mixer_vu_right;
+#X obj 915 95 bng 15 250 50 0 \$0-mixer_reset \$0-mixer_reset_set empty
+17 7 0 10 -262144 -1 -1;
+#X obj 29 20 inlet~;
+#X obj 104 20 inlet~;
+#X obj 159 20 inlet~;
+#X obj 234 20 inlet~;
+#X obj 289 20 inlet~;
+#X obj 364 20 inlet~;
+#X obj 419 20 inlet~;
+#X obj 494 20 inlet~;
+#N canvas 224 37 450 300 reset 0;
+#X obj 29 76 until;
+#X obj 29 98 f;
+#X obj 58 98 + 1;
+#X obj 104 100 sel 0;
+#X obj 29 126 + 1;
+#X obj 29 150 prepend \$0;
+#X msg 29 176 \; \$1-mixer_\$2_filter_set 65 \; \$1-mixer_\$2_gain_set
+100 \; \$1-mixer_\$2_pan_set 65 \;;
+#X obj 29 49 r \$0-mixer_reset;
+#X obj 58 120 mod 5;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 1 0 4 0;
+#X connect 2 0 8 0;
+#X connect 3 0 0 1;
+#X connect 4 0 5 0;
+#X connect 5 0 6 0;
+#X connect 7 0 0 0;
+#X connect 8 0 1 1;
+#X connect 8 0 3 0;
+#X restore 1026 64 pd reset;
+#X obj 159 65 channel5~ \$0 2;
+#X obj 646 201 s \$0-mixer_1_gain_set;
+#X obj 645 222 s \$0-mixer_2_gain_set;
+#X obj 646 240 s \$0-mixer_3_gain_set;
+#X obj 645 262 s \$0-mixer_4_gain_set;
+#X obj 571 35 inlet;
+#X obj 574 133 route gain1 gain2 gain3 gain4;
+#X obj 229 135 channel5~ \$0 9;
+#X obj 29 65 channel5~ \$0 1;
+#X obj 289 65 channel5~ \$0 3;
+#X obj 419 65 channel5~ \$0 4;
+#X connect 20 0 21 0;
+#X connect 21 0 28 0;
+#X connect 23 0 24 0;
+#X connect 24 0 27 0;
+#X connect 30 0 47 0;
+#X connect 31 0 47 1;
+#X connect 32 0 39 0;
+#X connect 33 0 39 1;
+#X connect 34 0 48 0;
+#X connect 35 0 48 1;
+#X connect 36 0 49 0;
+#X connect 37 0 49 1;
+#X connect 39 0 46 0;
+#X connect 39 1 46 1;
+#X connect 44 0 45 0;
+#X connect 45 0 40 0;
+#X connect 45 1 41 0;
+#X connect 45 2 42 0;
+#X connect 45 3 43 0;
+#X connect 46 0 23 0;
+#X connect 46 0 25 0;
+#X connect 46 1 20 0;
+#X connect 46 1 26 0;
+#X connect 47 0 46 0;
+#X connect 47 1 46 1;
+#X connect 48 0 46 0;
+#X connect 48 1 46 1;
+#X connect 49 0 46 0;
+#X connect 49 1 46 1;
+#X coords 0 -1 1 1 370 106 1 640 10;

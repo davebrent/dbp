@@ -1,0 +1,617 @@
+#N canvas 123 22 951 700 10;
+#X obj 467 111 nbx 3 15 -1e+37 1e+37 0 0 \$0-search_amount \$0-search_amount_set
+TotalRead 42 8 1 11 -262144 -1 -1 25 256;
+#X obj 467 96 nbx 3 15 -1e+37 1e+37 0 0 \$0-search_current \$0-search_current_set
+FilesRead 42 8 1 11 -262144 -1 -1 25 256;
+#X obj 397 96 bng 15 250 50 0 search_next search_next_set Start 22
+8 1 11 -262144 -128992 -1;
+#X obj 397 111 tgl 15 0 \$0-search_stop \$0-search_stop_set Stop 22
+8 1 11 -262144 -1 -1 1 1;
+#X obj 397 141 bng 15 250 50 0 \$0-reset \$0-reset_set Reset 22 8 1
+11 -262144 -1 -1;
+#N canvas 0 22 450 300 (subpatch) 0;
+#X array mosaic 3.64954e+06 float 2;
+#X coords 0 1 3.64954e+06 -1 360 160 1;
+#X restore 17 211 graph;
+#N canvas 0 22 450 300 (subpatch) 0;
+#X array target 3.64966e+06 float 2;
+#X coords 0 1 3.64966e+06 -1 175 45 1;
+#X restore 17 111 graph;
+#N canvas 0 22 450 300 (subpatch) 0;
+#X array corpus 123070 float 2;
+#X coords 0 1 123070 -1 175 45 1;
+#X restore 202 111 graph;
+#X obj 536 266 nbx 4 15 -1e+37 1e+37 0 0 \$0-gui_weight_1 \$0-gui_weight_1_set
+empty 0 -8 1 11 -262144 -1 -1 1 256;
+#X obj 536 281 nbx 4 15 -1e+37 1e+37 0 0 \$0-gui_weight_2 \$0-gui_weight_2_set
+empty 0 -8 1 11 -262144 -1 -1 1 256;
+#X obj 536 311 nbx 4 15 -1e+37 1e+37 0 0 \$0-gui_weight_3 \$0-gui_weight_3_set
+empty 0 -8 1 11 -262144 -1 -1 1 256;
+#X obj 536 296 nbx 4 15 -1e+37 1e+37 0 0 \$0-gui_weight_4 \$0-gui_weight_4_set
+empty 0 -8 1 11 -262144 -1 -1 1 256;
+#X obj 536 326 nbx 4 15 -1e+37 1e+37 0 0 \$0-gui_weight_5 \$0-gui_weight_5_set
+empty 0 -8 1 11 -262144 -1 -1 1 256;
+#X obj 536 341 nbx 4 15 -1e+37 1e+37 0 0 \$0-gui_weight_6 \$0-gui_weight_6_set
+empty 0 -8 1 11 -262144 -1 -1 1 256;
+#X obj 536 356 nbx 4 15 -1e+37 1e+37 0 0 \$0-gui_weight_8 \$0-gui_weight_8_set
+empty 0 -8 1 11 -262144 -1 -1 1 256;
+#X obj 400 266 hsl 128 15 0 127 0 0 \$0-control_weight_1 \$0-control_weight_1_set
+SpectralRollOff 10 8 1 11 -262144 -1 -1 12700 1;
+#X obj 400 281 hsl 128 15 0 127 0 0 \$0-control_weight_2 \$0-control_weight_2_set
+SpectralCentroid 10 8 1 11 -262144 -1 -1 12700 1;
+#X obj 400 311 hsl 128 15 0 127 0 0 \$0-control_weight_3 \$0-control_weight_3_set
+SpectralVariability 10 8 1 11 -262144 -1 -1 12700 1;
+#X obj 400 296 hsl 128 15 0 127 0 0 \$0-control_weight_4 \$0-control_weight_4_set
+SpectralFlux 10 8 1 11 -262144 -1 -1 12700 1;
+#X obj 400 326 hsl 128 15 0 127 0 0 \$0-control_weight_5 \$0-control_weight_5_set
+ZeroCrossingRate 10 8 1 11 -262144 -1 -1 12700 1;
+#X obj 400 341 hsl 128 15 0 127 0 0 \$0-control_weight_6 \$0-control_weight_6_set
+RMS 10 8 1 11 -262144 -1 -1 12700 1;
+#X obj 400 356 hsl 128 15 0 127 0 0 \$0-control_weight_8 \$0-control_weight_8_set
+MeanAmplitude 10 8 1 11 -262144 -1 -1 12700 1;
+#X obj 467 141 nbx 6 15 -1e+37 1e+37 0 0 units units_set Size 70 8
+1 11 -262144 -1 -1 750 256;
+#X obj 600 266 vradio 15 1 0 7 \$0-window_type \$0-window_type_set
+empty 0 -8 0 10 -262144 -1 -1 1;
+#X obj 400 196 hsl 128 15 0 127 0 0 \$0-markov_states \$0-markov_states_set
+States 10 8 1 11 -262144 -1 -1 3600 1;
+#X obj 400 211 hsl 128 15 0 127 0 0 \$0-markov_order \$0-markov_order_set
+Order 10 8 1 11 -262144 -1 -1 3900 1;
+#X obj 536 196 nbx 4 15 -1e+37 1e+37 0 0 \$0-gui_markov_states \$0-gui_markov_states_set
+empty 0 -8 1 11 -262144 -1 -1 107 256;
+#X obj 536 211 nbx 4 15 -1e+37 1e+37 0 0 \$0-gui_markov_order \$0-gui_markov_order_set
+empty 0 -8 1 11 -262144 -1 -1 16 256;
+#X obj 397 246 cnv 10 1 1 empty empty WEIGHTS 0 7 1 12 -262144 -1 0
+;
+#X obj 397 176 cnv 10 1 1 empty empty MARKOV 0 7 1 12 -262144 -1 0
+;
+#X obj 600 245 cnv 10 1 1 empty empty WINDOW 0 7 1 12 -262144 -1 0
+;
+#X obj 17 51 cnv 15 1 1 empty empty STATCONCAT 0 0 1 33 -262144 -1
+0;
+#X obj 17 76 cnv 10 300 17 empty empty INPUT 0 7 1 12 -262144 -1 0
+;
+#X obj 397 75 cnv 10 1 1 empty empty SEARCH 0 7 1 12 -262144 -1 0;
+#X obj 397 126 bng 15 250 50 0 \$0-open_folder \$0-open_folder_set
+Folder 22 8 1 11 -262144 -1 -1;
+#X obj 600 196 vradio 15 1 0 2 \$0-resynthesis_type \$0-resynthesis_type_set
+empty 0 -8 0 10 -262144 -1 -1 1;
+#X obj 600 175 cnv 10 1 1 empty empty RESYNTHESIS 0 7 1 12 -262144
+-1 0;
+#X obj 620 197 cnv 10 1 1 empty empty Mosaic 0 7 1 11 -262144 -1 0
+;
+#X obj 620 213 cnv 10 1 1 empty empty Markov 0 7 1 11 -262144 -1 0
+;
+#X obj 622 268 cnv 10 1 1 empty empty Triangle 0 7 1 11 -262144 -1
+0;
+#X obj 622 284 cnv 10 1 1 empty empty Hanning 0 7 1 11 -262144 -1 0
+;
+#X obj 622 299 cnv 10 1 1 empty empty Hamming 0 7 1 11 -262144 -1 0
+;
+#X obj 622 314 cnv 10 1 1 empty empty Blackman 0 7 1 11 -262144 -1
+0;
+#X obj 622 329 cnv 10 1 1 empty empty Cosine 0 7 1 11 -262144 -1 0
+;
+#X obj 622 344 cnv 10 1 1 empty empty FlatTop 0 7 1 11 -262144 -1 0
+;
+#X obj 622 359 cnv 10 1 1 empty empty Rectangular 0 7 1 11 -262144
+-1 0;
+#X obj 600 76 cnv 10 1 1 empty empty SEGMENTATION 0 7 1 12 -262144
+-1 0;
+#X obj 63 196 cnv 15 300 15 empty empty MOSAIC 10 9 1 12 -1 -262144
+0;
+#X obj 362 196 tgl 15 0 \$0-normalize \$0-normalize_set N 5 9 0 11
+-1 -262144 -262144 1 1;
+#X obj 17 196 bng 15 250 50 0 \$0-play_mosaic \$0-play_mosaic_set P
+4 9 1 11 -1 -262144 -262144;
+#X obj 32 196 bng 15 250 50 0 \$0-stop_mosaic \$0-stop_mosaic_set S
+4 9 1 11 -1 -262144 -262144;
+#X obj 47 196 bng 15 250 50 0 \$0-save \$0-save_set L 5 9 1 11 -1 -262144
+-262144;
+#X obj 248 96 cnv 15 129 15 empty empty CORPUS 10 9 1 12 -1 -262144
+0;
+#X obj 17 96 bng 15 250 50 0 \$0-play_target \$0-play_target_set P
+4 9 1 11 -1 -262144 -262144;
+#X obj 32 96 bng 15 250 50 0 \$0-stop_target \$0-stop_target_set S
+4 9 1 11 -1 -262144 -262144;
+#X obj 47 96 bng 15 250 50 0 \$0-target \$0-target_set L 5 9 1 11 -1
+-262144 -262144;
+#X obj 63 96 cnv 15 129 15 empty empty TARGET 10 9 1 12 -1 -262144
+0;
+#X obj 202 96 bng 15 250 50 0 \$0-play_corpus \$0-play_corpus_set P
+4 9 1 11 -1 -262144 -262144;
+#X obj 217 96 bng 15 250 50 0 \$0-stop_corpus \$0-stop_corpus_set S
+4 9 1 11 -1 -262144 -262144;
+#X obj 232 96 bng 15 250 50 0 \$0-corpus \$0-corpus_set L 5 9 1 11
+-1 -262144 -262144;
+#X obj 600 96 vradio 15 1 0 4 \$0-param_unitsize \$0-param_unitsize_set
+empty 0 -8 0 10 -262144 -1 -1 2;
+#X obj 621 98 cnv 10 1 1 empty empty 23.2ms 0 7 1 11 -262144 -1 0;
+#X obj 621 114 cnv 10 1 1 empty empty 46.4ms 0 7 1 11 -262144 -1 0
+;
+#X obj 621 129 cnv 10 1 1 empty empty 92.8ms 0 7 1 11 -262144 -1 0
+;
+#X obj 621 144 cnv 10 1 1 empty empty 185ms 0 7 1 11 -262144 -1 0;
+#X obj 760 76 cnv 10 1 1 empty empty DEBUGGING 0 7 1 12 -262144 -1
+0;
+#X obj 760 116 tgl 15 0 \$0-print_6 \$0-print_6_set Audio 22 8 1 11
+-262144 -1 -1 0 1;
+#X obj 760 131 tgl 15 0 \$0-print_7 \$0-print_7_set FFT 22 8 1 11 -262144
+-1 -1 0 1;
+#X obj 760 146 tgl 15 0 \$0-print_8 \$0-print_8_set Features 22 8 1
+11 -262144 -1 -1 0 1;
+#X obj 760 161 tgl 15 0 \$0-print_9 \$0-print_9_set Units 22 8 1 11
+-262144 -1 -1 0 1;
+#X obj 760 176 tgl 15 0 \$0-print_10 \$0-print_10_set Pattern 22 8
+1 11 -262144 -1 -1 0 1;
+#X obj 760 96 cnv 10 1 1 empty empty Target 0 7 1 11 -262144 -1 0;
+#X obj 850 116 tgl 15 0 \$0-print_0 \$0-print_0_set Audio 22 8 1 11
+-262144 -1 -1 0 1;
+#X obj 850 131 tgl 15 0 \$0-print_1 \$0-print_1_set FFT 22 8 1 11 -262144
+-1 -1 0 1;
+#X obj 850 146 tgl 15 0 \$0-print_2 \$0-print_2_set Features 22 8 1
+11 -262144 -1 -1 0 1;
+#X obj 850 161 tgl 15 0 \$0-print_3 \$0-print_3_set Units 22 8 1 11
+-262144 -1 -1 0 1;
+#X obj 850 96 cnv 10 1 1 empty empty Corpus 0 7 1 11 -262144 -1 0;
+#X obj 760 226 tgl 15 0 \$0-print_11 \$0-print_11_set Audio 22 8 1
+11 -262144 -1 -1 0 1;
+#X obj 760 241 tgl 15 0 \$0-print_12 \$0-print_12_set FFT 22 8 1 11
+-262144 -1 -1 0 1;
+#X obj 760 256 tgl 15 0 \$0-print_13 \$0-print_13_set Features 22 8
+1 11 -262144 -1 -1 0 1;
+#X obj 760 271 tgl 15 0 \$0-print_14 \$0-print_14_set Units 22 8 1
+11 -262144 -1 -1 0 1;
+#X obj 760 286 tgl 15 0 \$0-print_15 \$0-print_15_set Pattern 22 8
+1 11 -262144 -1 -1 0 1;
+#X obj 760 206 cnv 10 1 1 empty empty Mosaic 0 7 1 11 -262144 -1 0
+;
+#X obj 850 208 tgl 15 0 \$0-print_4 \$0-print_4_set Units 22 8 1 11
+-262144 -1 -1 0 1;
+#X obj 850 188 cnv 10 1 1 empty empty Database 0 7 1 11 -262144 -1
+0;
+#X obj 850 271 tgl 15 0 \$0-print_16 \$0-print_16_set Units 22 8 1
+11 -262144 -1 -1 0 1;
+#X obj 850 251 cnv 10 1 1 empty empty Cluster 0 7 1 11 -262144 -1 0
+;
+#X obj 850 286 tgl 15 0 \$0-print_17 \$0-print_17_set Features 22 8
+1 11 -262144 -1 -1 0 1;
+#X obj 850 223 tgl 15 0 \$0-print_5 \$0-print_5_set Features 22 8 1
+11 -262144 -1 -1 0 1;
+#X obj 17 176 cnv 10 300 17 empty empty OUTPUT 0 7 1 12 -262144 -1
+0;
+#N canvas 128 161 280 335 load 0;
+#X obj 47 273 outlet;
+#X obj 47 83 openpanel;
+#X obj 47 43 inlet;
+#X obj 47 113 t a a;
+#X msg 47 233 mosaic target \$1;
+#X obj 87 173 soundfiler;
+#X msg 87 143 read -resize \$1 target;
+#X obj 87 203 s target_samples;
+#X connect 1 0 3 0;
+#X connect 2 0 1 0;
+#X connect 3 0 4 0;
+#X connect 3 1 6 0;
+#X connect 4 0 0 0;
+#X connect 5 0 7 0;
+#X connect 6 0 5 0;
+#X restore 133 555 pd load;
+#X obj 133 535 r \$0-target;
+#X obj 133 475 soundfiler;
+#X msg 133 455 write -wave \$1 mosaic;
+#X obj 133 415 r \$0-save;
+#X obj 133 435 savepanel;
+#N canvas 0 22 637 501 parameters 0;
+#N canvas 383 194 452 381 getweights 0;
+#X obj 25 253 f;
+#X obj 65 213 t b f;
+#X obj 105 213 t b f;
+#X obj 145 213 t b f;
+#X obj 185 213 t b f;
+#X obj 225 213 t b f;
+#X obj 265 213 t b f;
+#X obj 305 213 t b f;
+#X obj 345 213 t b f;
+#X obj 25 213 t b f;
+#X obj 25 283 pack 0 0 0 0 0 0 0 0 0;
+#X obj 25 343 outlet;
+#X obj 25 23 weightget \$0 1;
+#X obj 65 43 weightget \$0 2;
+#X obj 105 63 weightget \$0 3;
+#X obj 145 83 weightget \$0 4;
+#X obj 185 103 weightget \$0 5;
+#X obj 225 123 weightget \$0 6;
+#X obj 265 143 weightget \$0 7;
+#X obj 305 163 weightget \$0 8;
+#X obj 345 183 weightget \$0 9;
+#X connect 0 0 10 0;
+#X connect 1 0 0 0;
+#X connect 1 1 10 1;
+#X connect 2 0 0 0;
+#X connect 2 1 10 2;
+#X connect 3 0 0 0;
+#X connect 3 1 10 3;
+#X connect 4 0 0 0;
+#X connect 4 1 10 4;
+#X connect 5 0 0 0;
+#X connect 5 1 10 5;
+#X connect 6 0 0 0;
+#X connect 6 1 10 6;
+#X connect 7 0 0 0;
+#X connect 7 1 10 7;
+#X connect 8 0 0 0;
+#X connect 8 1 10 8;
+#X connect 9 0 0 0;
+#X connect 9 1 0 1;
+#X connect 10 0 11 0;
+#X connect 12 0 9 0;
+#X connect 13 0 1 0;
+#X connect 14 0 2 0;
+#X connect 15 0 3 0;
+#X connect 16 0 4 0;
+#X connect 17 0 5 0;
+#X connect 18 0 6 0;
+#X connect 19 0 7 0;
+#X connect 20 0 8 0;
+#X restore 25 323 pd getweights;
+#X obj 25 203 r \$0-unitsize;
+#X msg 25 53 window \$1;
+#X obj 25 23 r \$0-window_type;
+#X obj 25 83 r \$0-normalize;
+#X msg 25 113 normalize \$1;
+#N canvas 0 22 621 627 markov 0;
+#X obj 95 228 s \$0-gui_markov_states_set;
+#X obj 133 402 s \$0-gui_markov_order_set;
+#X obj 65 48 r \$0-markov_states;
+#X obj 83 262 r \$0-markov_order;
+#X obj 83 292 mid2dec;
+#X obj 83 312 * 49;
+#X obj 83 332 + 1;
+#X obj 83 362 int;
+#X obj 95 108 r units;
+#X obj 95 128 * 0.5;
+#X obj 65 78 mid2dec;
+#X obj 65 148 *;
+#X obj 95 148 - 1;
+#X obj 95 168 t b f;
+#X obj 65 198 int;
+#X obj 65 168 + 1;
+#X obj 83 402 t b f;
+#X obj 65 432 f;
+#X obj 65 532 outlet;
+#X text 153 490 Markov: states \, order;
+#X obj 65 462 pack 0 0;
+#X connect 2 0 10 0;
+#X connect 3 0 4 0;
+#X connect 4 0 5 0;
+#X connect 5 0 6 0;
+#X connect 6 0 7 0;
+#X connect 7 0 1 0;
+#X connect 7 0 16 0;
+#X connect 8 0 9 0;
+#X connect 9 0 12 0;
+#X connect 10 0 11 0;
+#X connect 11 0 15 0;
+#X connect 12 0 13 0;
+#X connect 13 0 11 0;
+#X connect 13 1 11 1;
+#X connect 14 0 0 0;
+#X connect 14 0 17 0;
+#X connect 15 0 14 0;
+#X connect 16 0 17 0;
+#X connect 16 1 20 1;
+#X connect 17 0 20 0;
+#X connect 20 0 18 0;
+#X restore 25 263 pd markov;
+#N canvas 83 74 905 537 getPrint 0;
+#X obj 39 478 outlet;
+#X msg 39 307 corpusprint \$1 \$2 \$3 \$4;
+#X obj 59 217 t b f;
+#X obj 79 197 t b f;
+#X obj 99 177 t b f;
+#X obj 39 97 r \$0-print_0;
+#X obj 59 117 r \$0-print_1;
+#X obj 79 137 r \$0-print_2;
+#X obj 99 157 r \$0-print_3;
+#X obj 39 247 f;
+#X obj 39 277 pack 0 0 0 0;
+#X obj 609 217 t b f;
+#X obj 589 247 f;
+#X msg 589 307 databaseprint \$1 \$2;
+#X obj 589 277 pack 0 0;
+#X obj 589 167 r \$0-print_4;
+#X obj 609 187 r \$0-print_5;
+#X obj 229 217 t b f;
+#X obj 249 197 t b f;
+#X obj 269 177 t b f;
+#X obj 209 247 f;
+#X obj 209 37 r \$0-print_6;
+#X obj 229 57 r \$0-print_7;
+#X obj 249 77 r \$0-print_8;
+#X obj 269 97 r \$0-print_9;
+#X msg 209 307 targetprint \$1 \$2 \$3 \$4 \$5;
+#X obj 209 277 pack 0 0 0 0 0;
+#X obj 289 117 r \$0-print_10;
+#X obj 289 147 t b f;
+#X obj 419 217 t b f;
+#X obj 439 197 t b f;
+#X obj 459 177 t b f;
+#X obj 399 247 f;
+#X obj 399 277 pack 0 0 0 0 0;
+#X obj 479 147 t b f;
+#X msg 399 307 mosaicprint \$1 \$2 \$3 \$4 \$5;
+#X obj 399 37 r \$0-print_11;
+#X obj 419 57 r \$0-print_12;
+#X obj 439 77 r \$0-print_13;
+#X obj 459 97 r \$0-print_14;
+#X obj 479 117 r \$0-print_15;
+#X obj 749 217 t b f;
+#X obj 729 247 f;
+#X obj 729 277 pack 0 0;
+#X obj 729 167 r \$0-print_16;
+#X obj 749 187 r \$0-print_17;
+#X msg 729 307 clusterprint \$1 \$2;
+#X connect 1 0 0 0;
+#X connect 2 0 9 0;
+#X connect 2 1 10 1;
+#X connect 3 0 9 0;
+#X connect 3 1 10 2;
+#X connect 4 0 9 0;
+#X connect 4 1 10 3;
+#X connect 5 0 9 0;
+#X connect 6 0 2 0;
+#X connect 7 0 3 0;
+#X connect 8 0 4 0;
+#X connect 9 0 10 0;
+#X connect 10 0 1 0;
+#X connect 11 0 12 0;
+#X connect 11 1 14 1;
+#X connect 12 0 14 0;
+#X connect 13 0 0 0;
+#X connect 14 0 13 0;
+#X connect 15 0 12 0;
+#X connect 16 0 11 0;
+#X connect 17 0 20 0;
+#X connect 17 1 26 1;
+#X connect 18 0 20 0;
+#X connect 18 1 26 2;
+#X connect 19 0 20 0;
+#X connect 19 1 26 3;
+#X connect 20 0 26 0;
+#X connect 21 0 20 0;
+#X connect 22 0 17 0;
+#X connect 23 0 18 0;
+#X connect 24 0 19 0;
+#X connect 25 0 0 0;
+#X connect 26 0 25 0;
+#X connect 27 0 28 0;
+#X connect 28 0 20 0;
+#X connect 28 1 26 4;
+#X connect 29 0 32 0;
+#X connect 29 1 33 1;
+#X connect 30 0 32 0;
+#X connect 30 1 33 2;
+#X connect 31 0 32 0;
+#X connect 31 1 33 3;
+#X connect 32 0 33 0;
+#X connect 33 0 35 0;
+#X connect 34 0 32 0;
+#X connect 34 1 33 4;
+#X connect 35 0 0 0;
+#X connect 36 0 32 0;
+#X connect 37 0 29 0;
+#X connect 38 0 30 0;
+#X connect 39 0 31 0;
+#X connect 40 0 34 0;
+#X connect 41 0 42 0;
+#X connect 41 1 43 1;
+#X connect 42 0 43 0;
+#X connect 43 0 46 0;
+#X connect 44 0 42 0;
+#X connect 45 0 41 0;
+#X connect 46 0 0 0;
+#X restore 45 383 pd getPrint;
+#X obj 25 416 outlet;
+#X obj 25 353 prepend weights;
+#X obj 25 143 r \$0-resynthesis_type;
+#X msg 25 173 resynthesis \$1;
+#X msg 25 233 unitsize \$1;
+#X msg 25 293 markov \$1 \$2;
+#X obj 251 148 / 44.1;
+#X obj 251 188 s \$0-unitsize_samps_set;
+#X obj 251 168 s \$0-unitsize_ms_set;
+#X obj 251 208 s \$0-unitsize;
+#N canvas 0 22 229 230 unitsize 0;
+#X obj 34 80 f 1024;
+#X obj 34 100 f 2048;
+#X obj 34 120 f 4096;
+#X obj 34 140 f 8192;
+#X obj 34 170 outlet;
+#X obj 34 30 r \$0-param_unitsize;
+#X obj 34 50 sel 0 1 2 3;
+#X connect 0 0 4 0;
+#X connect 1 0 4 0;
+#X connect 2 0 4 0;
+#X connect 3 0 4 0;
+#X connect 5 0 6 0;
+#X connect 6 0 0 0;
+#X connect 6 1 1 0;
+#X connect 6 2 2 0;
+#X connect 6 3 3 0;
+#X restore 251 128 pd unitsize;
+#X connect 0 0 9 0;
+#X connect 1 0 12 0;
+#X connect 2 0 8 0;
+#X connect 3 0 2 0;
+#X connect 4 0 5 0;
+#X connect 5 0 8 0;
+#X connect 6 0 13 0;
+#X connect 7 0 8 0;
+#X connect 9 0 8 0;
+#X connect 10 0 11 0;
+#X connect 11 0 8 0;
+#X connect 12 0 8 0;
+#X connect 13 0 8 0;
+#X connect 14 0 16 0;
+#X connect 18 0 15 0;
+#X connect 18 0 17 0;
+#X connect 18 0 14 0;
+#X restore 133 515 pd parameters;
+#N canvas 289 63 366 513 soundfile_to_database 0;
+#N canvas 383 108 443 426 load 0;
+#X obj 77 203 soundfiler;
+#X msg 77 173 read -resize \$1 corpus;
+#X obj 77 333 outlet;
+#X obj 77 233 t b f;
+#X obj 124 263 s corpus_samples;
+#X obj 77 103 inlet;
+#X obj 77 143 t a a;
+#X obj 77 263 symbol;
+#X msg 77 293 extract corpus \$1;
+#X connect 0 0 3 0;
+#X connect 1 0 0 0;
+#X connect 3 0 7 0;
+#X connect 3 1 4 0;
+#X connect 5 0 6 0;
+#X connect 6 0 1 0;
+#X connect 6 1 7 1;
+#X connect 7 0 8 0;
+#X connect 8 0 2 0;
+#X restore 34 432 pd load;
+#X msg 94 432 reset;
+#X msg 51 312 search;
+#X obj 139 372 unpack 0 0;
+#X obj 51 212 r \$0-reset;
+#X obj 196 402 s \$0-search_amount_set;
+#X obj 139 432 s \$0-search_current_set;
+#X obj 67 82 r \$0-search_stop;
+#X obj 34 112 spigot;
+#X obj 54 372 r \$0-corpus;
+#X obj 54 402 openpanel;
+#X obj 34 52 del 200;
+#X obj 51 242 t b b b;
+#X obj 34 22 r search_next;
+#X obj 34 472 outlet;
+#X msg 101 273 \; target const 0 \; mosaic const 0 \; corpus const
+0 \;;
+#X msg 61 169 \; pd dsp 0 \;;
+#X obj 34 142 t b b;
+#X obj 236 161 r \$0-open_folder;
+#X obj 241 198 tof/folderpanel;
+#X msg 241 233 set \$1;
+#X obj 114 118 /Users/dapoulter/audio/pd_samples;
+#X obj 230 337 print;
+#X obj 34 342 pdj Search 0 100;
+#X connect 0 0 14 0;
+#X connect 1 0 14 0;
+#X connect 2 0 23 0;
+#X connect 3 0 6 0;
+#X connect 3 1 5 0;
+#X connect 4 0 12 0;
+#X connect 7 0 8 1;
+#X connect 8 0 17 0;
+#X connect 9 0 10 0;
+#X connect 10 0 0 0;
+#X connect 11 0 8 0;
+#X connect 12 0 2 0;
+#X connect 12 1 1 0;
+#X connect 12 2 15 0;
+#X connect 13 0 11 0;
+#X connect 17 0 23 0;
+#X connect 17 1 16 0;
+#X connect 18 0 19 0;
+#X connect 19 0 20 0;
+#X connect 20 0 22 0;
+#X connect 20 0 23 0;
+#X connect 23 0 0 0;
+#X connect 23 1 3 0;
+#X restore 133 575 pd soundfile_to_database;
+#X obj 133 635 table builder;
+#X obj 133 605 pdj Statconcat;
+#X obj 539 415 loadbang;
+#X obj 313 574 sampler~ corpus;
+#X obj 313 454 sampler~ mosaic;
+#X obj 313 514 sampler~ target;
+#X obj 400 554 r \$0-play_corpus;
+#X obj 400 494 r \$0-play_target;
+#X obj 400 434 r \$0-play_mosaic;
+#X obj 356 474 r \$0-stop_target;
+#X obj 356 414 r \$0-stop_mosaic;
+#X obj 356 534 r \$0-stop_corpus;
+#X obj 539 475 f \$0;
+#X obj 729 575 pack 0 0;
+#X obj 799 535 f \$0;
+#X msg 729 495 18;
+#X obj 729 535 until;
+#X obj 729 555 f 0;
+#X obj 759 555 + 1;
+#X obj 769 535 f 0;
+#X obj 729 515 t f b;
+#X msg 729 595 \; \$2-print_\$1_set 0 \;;
+#X obj 729 475 t b b;
+#X msg 539 495 \; \$1-param_unitsize_set 2 \; \$1-search_stop_set 1
+\; \$1-reset bang \; \$1-window_type_set 1 \; \$1-resynthesis_type_set
+1 \; \$1-markov_states_set 16 \; \$1-markov_order_set 10 \; \$1-normalize_set
+1 \; pd dsp 0 \;;
+#X obj 539 445 t b b;
+#N canvas 768 165 350 465 load 0;
+#X obj 58 51 inlet;
+#X obj 58 271 outlet;
+#X obj 58 131 soundfiler;
+#X obj 58 91 unpack s f f;
+#X obj 58 151 b;
+#X obj 58 211 pack f f;
+#X obj 58 191 f;
+#X msg 58 231 build builder \$1 \$2;
+#X msg 58 111 read -resize \$1 builder;
+#X obj 58 171 delay 20;
+#X connect 0 0 3 0;
+#X connect 2 0 4 0;
+#X connect 3 0 8 0;
+#X connect 3 1 6 1;
+#X connect 3 2 5 1;
+#X connect 4 0 9 0;
+#X connect 5 0 7 0;
+#X connect 6 0 5 0;
+#X connect 7 0 1 0;
+#X connect 8 0 2 0;
+#X connect 9 0 6 0;
+#X restore 73 605 pd load;
+#X obj 313 609 dac~;
+#X connect 90 0 99 0;
+#X connect 91 0 90 0;
+#X connect 93 0 92 0;
+#X connect 94 0 95 0;
+#X connect 95 0 93 0;
+#X connect 96 0 99 0;
+#X connect 97 0 99 0;
+#X connect 99 0 123 0;
+#X connect 100 0 122 0;
+#X connect 101 0 124 0;
+#X connect 101 0 124 1;
+#X connect 102 0 103 0;
+#X connect 103 0 101 0;
+#X connect 104 0 101 2;
+#X connect 105 0 103 2;
+#X connect 106 0 102 2;
+#X connect 107 0 103 1;
+#X connect 108 0 102 1;
+#X connect 109 0 101 1;
+#X connect 110 0 121 0;
+#X connect 111 0 119 0;
+#X connect 112 0 111 1;
+#X connect 113 0 118 0;
+#X connect 114 0 115 0;
+#X connect 115 0 116 0;
+#X connect 115 0 111 0;
+#X connect 116 0 115 1;
+#X connect 117 0 115 1;
+#X connect 118 0 114 0;
+#X connect 118 1 117 0;
+#X connect 120 0 113 0;
+#X connect 120 1 112 0;
+#X connect 122 0 110 0;
+#X connect 122 1 120 0;
+#X connect 123 0 99 0;
+#X coords 0 -1 1 1 935 365 2 5 20;

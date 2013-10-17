@@ -1,0 +1,13 @@
+#N canvas 589 143 255 199 10;
+#X obj 48 101 / 127;
+#X obj 48 80 int 1;
+#X obj 48 59 loadbang;
+#X obj 33 123 * 1;
+#X obj 33 144 outlet;
+#X obj 33 38 inlet;
+#X text 16 10 midi to decimal;
+#X connect 0 0 3 1;
+#X connect 1 0 0 0;
+#X connect 2 0 1 0;
+#X connect 3 0 4 0;
+#X connect 5 0 3 0;
