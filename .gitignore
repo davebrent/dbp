@@ -1,0 +1,4 @@
+env/
+trunk/
+.DS_Store
+*.pyc
