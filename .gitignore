@@ -1,4 +1,5 @@
 env/
 trunk/
+media/
 .DS_Store
 *.pyc
