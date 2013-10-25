@@ -129,27 +129,27 @@ local input_2 = 1
 
 
 function sane_input(input1, input2)
-	if input1 <= 0 or input2 <= 0 then
-		return false
-	end
-	return true
+  if input1 <= 0 or input2 <= 0 then
+    return false
+  end
+  return true
 end
 
 
 function dp_bjorklund:in_1_float(f)
-	local seq = {}
+  local seq = {}
 
-	if sane_input(f, input_2) then
-		if f > input_2 then
-			seq = eugen(input_2, f)
-		else
-			seq = eugen(f, input_2)
-		end
-	  self:outlet(1, "list", seq)
-	end
+  if sane_input(f, input_2) then
+    if f > input_2 then
+      seq = eugen(input_2, f)
+    else
+      seq = eugen(f, input_2)
+    end
+    self:outlet(1, "list", seq)
+  end
 end
 
 
 function dp_bjorklund:in_2_float(f)
-	input_2 = f
+  input_2 = f
 end
