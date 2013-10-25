@@ -1,0 +1,225 @@
+@import "compass";
+
+$base-font-size: 19px;
+$base-line-height: 30px;
+
+$color-black: #333;
+$color-grey: #bbb;
+$color-anchor: #3a5070;
+$color-anchor-hover: #ff7f00;
+$small: "only screen and (min-width: 768px)";
+
+@include establish-baseline($base-font-size);
+
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Georgia;
+  color: $color-black;
+  text-rendering: optimizeLegibility;
+  background-color: #fff;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Helvetica Neue", Helvetica;
+}
+
+h1 {
+  @include adjust-font-size-to(25px, 1);
+  @include rhythm(0, 0, 0, 1, 25px);
+}
+
+h2 {
+  @include adjust-font-size-to(22px, 1);
+  @include rhythm(0, 0, 0, 1, 22px);
+}
+
+h3 {
+  @include adjust-font-size-to(20px, 1);
+  @include rhythm(0, 0, 0, 1, 20px);
+}
+
+h4 {
+  @include adjust-font-size-to(18px, 1);
+  @include rhythm(0, 0, 0, 1, 18px);
+}
+
+body, ul, p, dd, ol, pre {
+  @include adjust-font-size-to(18px, 1);
+  @include rhythm(0, 0, 0, 0.5, 18px);
+}
+
+code {
+  @include adjust-font-size-to(15px, 0.5);
+  @include rhythm(0, 0, 0, 1, 15px);
+}
+
+h2 {
+  font-weight: 200;
+}
+
+a {
+  text-decoration: none;
+  color: $color-anchor;
+}
+
+a:hover {
+  color: $color-anchor-hover !important;
+}
+
+
+#header {
+  @include trailing-border(2px);
+  @include trailer(1);
+  @include clearfix;
+
+  h1, h2, a {
+    color: $color-black !important;
+    @include leader(0);
+    @include trailer(0);
+  }
+
+  h3 {
+    display: none;
+  }
+
+  .brand {
+    float: left;
+  }
+
+  .menu {
+    float: right;
+  }
+
+  .link {
+    float: right;
+
+    img {
+      margin-top: 10px;
+      width: 40px;
+      height: auto;
+    }
+  }
+
+  .menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+pre {
+  overflow-y: scroll;
+}
+
+@media #{$small} {
+  pre {
+    overflow: visible;
+  }
+}
+
+// header
+@media #{$small} {
+  #header {
+    h1 {
+      @include adjust-font-size-to(50px, 2);
+    }
+
+    h3 {
+      @include trailer(0);
+      display: block;
+      color: $color-grey;
+      font-weight: normal;
+    }
+
+    .link img {
+      margin-top: 10px;
+      width: 60px;
+      height: auto;
+    }
+  }
+}
+
+.post-header > * {
+  @include leader(0);
+  @include trailer(0);
+}
+
+.post-header {
+  @include trailer(1);
+
+  a {
+    color: $color-black;
+  }
+}
+
+@media #{$small} {
+  .post-header {
+    @include apply-side-rhythm-border(left, 2px, 1);
+    margin-left: -1.333em;
+  }
+}
+
+#container {
+  @include padding-leader(1);
+  width: 90%;
+  margin: 0 auto;
+}
+
+@media #{$small} {
+  #container {
+    width: 580px;
+  }
+}
+
+.post-body {
+  a {
+    color: $color-anchor-hover;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    max-width: 400px;
+    margin: 0 auto;
+    display: block;
+  }
+
+  iframe {
+    @include trailer(0.5);
+  }
+
+  blockquote {
+    font-style: italic;
+    color: lighten($color-black, 10%);
+  }
+}
+
+#breadcrumbs {
+  @include clearfix;
+  padding: 0;
+  list-style: none;
+
+  li {
+    float: left;
+    margin-left: 5px;
+  }
+
+  li:first-child {
+    margin-left: 0;
+  }
+
+  li:after {
+    content: " / "
+  }
+}
+
+#footer {
+  border-top: 1px solid $color-black;
+  @include leader(1);
+  @include padding-trailer(0.25);
+  @include padding-leader(1);
+}
