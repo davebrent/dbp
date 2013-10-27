@@ -8,8 +8,8 @@ A collection of patches & scripts related to making noises and pictures.
 
 To use many of the patches you will need to add the following to the pure data search path.
 
-    /Users/davepoulter/Projects/dbp/patches/pure_data/externals/lua
-    /Users/davepoulter/Projects/dbp/patches/pure_data/abstractions/
+    pure_data/externals/lua
+    pure_data/abstractions/
 
 ### Python
 
