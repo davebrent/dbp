@@ -25,69 +25,7 @@ import doctest
 from docopt import docopt
 from schema import Schema, And, Use, Or, SchemaError
 
-
-def bjorklund(points, steps):
-    """
-    >>> bjorklund(4, 8)
-    [1, 0, 1, 0, 1, 0, 1, 0]
-    >>> bjorklund(2, 3)
-    [1, 0, 1]
-    >>> bjorklund(4, 7)
-    [1, 0, 1, 0, 1, 0, 1]
-    >>> bjorklund(5, 7)
-    [1, 0, 1, 1, 0, 1, 1]
-
-    """
-    if points == 0:
-        return _init_list(steps, 0)
-    elif points == steps:
-        return _init_list(steps, 1)
-    sequence = _init_seq(points, steps)
-    diff = steps - points
-    arg = diff if points > diff else points
-    return _flatten(_distribute(_reduce(sequence, arg)))
-
-
-def _init_list(length, value):
-    return length * [value] if length != 0 else []
-
-
-def _init_seq(pulses, steps):
-    return _init_list(pulses, [1]) + _init_list(steps - pulses, [0])
-
-
-def _flatten(sequence):
-    return reduce(lambda m, a: m + a, sequence, [])
-
-
-def _remainder(sequence):
-    sequence = list(sequence)
-    sequence.reverse()
-    remainder = 0
-    length = len(sequence[0])
-    for value in sequence:
-        if len(value) != length:
-            return remainder
-        remainder += 1
-    return 0
-
-
-def _reduce(sequence, remainder):
-    output = []
-    length = len(sequence) - 1
-    for i in range(remainder):
-        output += [_flatten([sequence[i], sequence[length - i]])]
-    output += sequence[remainder:length - remainder + 1]
-    return output
-
-
-def _distribute(sequence):
-    remainder = _remainder(sequence)
-    if remainder <= 1:
-        return sequence
-    difference = len(sequence) - remainder
-    arg = difference if remainder > difference else remainder
-    return _distribute(_reduce(sequence, arg))
+from rhythm import euclidean as bjorklund
 
 
 if __name__ == "__main__":
