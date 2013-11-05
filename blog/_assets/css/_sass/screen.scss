@@ -196,6 +196,16 @@ pre {
     font-style: italic;
     color: lighten($color-black, 10%);
   }
+
+  h2, h3, h4, h5, h6 {
+    @include trailer(0.5);
+  }
+}
+
+@media #{$small} {
+  .post-body img {
+    max-width: 100%;
+  }
 }
 
 #breadcrumbs {
