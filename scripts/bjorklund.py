@@ -25,7 +25,7 @@ import doctest
 from docopt import docopt
 from schema import Schema, And, Use, Or, SchemaError
 
-from rhythm import euclidean as bjorklund
+from rhythms import euclidean as bjorklund
 
 
 if __name__ == "__main__":
