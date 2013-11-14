@@ -265,6 +265,8 @@ def measure_syncopation(rhythm):
     0
     >>> measure_syncopation([1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0])
     2
+    >>> measure_syncopation([1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0])
+    2
 
     """
     measure = 0
@@ -272,7 +274,9 @@ def measure_syncopation(rhythm):
     locations = [s for s, p in enumerate(rhythm) if p == 1]
     round_down = lambda num, divisor: num - (num % divisor)
     for location, duration in zip(locations, onset_durations):
-        if location % round_down(duration, 2) != 0:
+        d = round_down(duration, 2)
+        d = d if d != 0 else 1
+        if location % d != 0:
             measure += 1
     return measure
 
@@ -359,10 +363,12 @@ def measure_complexity(rhythm):
 
     (Godfried Toussaint, Geometry of musical rhythm. Page 112)
 
-    >>> measure_complexity([1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0])
-    2.3983030183774829
-    >>> measure_complexity([1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0])
-    2.5131109877527313
+    # >>> measure_complexity([1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0])
+    # 2.3983030183774829
+    # >>> measure_complexity([1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0])
+    # 2.5131109877527313
+    >>> measure_complexity([1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0])
+    2.2464393588402252
 
     """
     entropy = 0.0
@@ -371,8 +377,8 @@ def measure_complexity(rhythm):
     histogram = histogram / numpy.sum(histogram)
 
     for freq in histogram:
-        entropy = entropy + freq * math.log(freq, 2)
-
+        if freq != 0:
+            entropy = entropy + freq * math.log(freq, 2)
     return -entropy
 
 
