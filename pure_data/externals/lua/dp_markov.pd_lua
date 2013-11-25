@@ -169,7 +169,7 @@ if pd ~= nil then
       self.order, self.probabilities, self.input_previous)
 
     self.input_previous = previous
-    self:outlet(1, "atom", {state})
+    self:outlet(1, "list", {state})
     return true
   end
 
