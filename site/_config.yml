@@ -1,0 +1,21 @@
+name: dbp
+
+source: .
+destination: ./_site
+plugins: ./_plugins
+layouts: ./_layouts
+
+future: true
+show_drafts: nil
+limit_posts: 0
+pygments: true
+
+relative_permalinks: true
+permalink: date
+
+safe: false
+host: 0.0.0.0
+port: 4000
+baseurl: /
+url: http://localhost:4000
+lsi: false

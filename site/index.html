@@ -1,0 +1,11 @@
+---
+layout: default
+title: Home
+---
+
+{% for post in site.posts %}
+  <div class="post-header">
+    <h1><a href={{ post.url }}>{{ post.title }}</a></h1>
+    <h2>{{ post.date | date_to_string }}</h2>
+  </div>
+{% endfor %}

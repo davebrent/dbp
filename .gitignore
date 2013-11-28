@@ -1,9 +1,12 @@
 bin/
-blog/_build/
-blog/_assets/css/screen.css
+site/_site/
+site/static/css/screen.css
 sketches/*/build-tmp/
 env/
+gems/
 trunk/
 media/
+.bundle/
+.sass-cache/
 .DS_Store
 *.pyc

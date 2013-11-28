@@ -1,8 +1,15 @@
-.PHONY: blog blog_upload
+.PHONY: blog blog_upload doctest serve
+
+doctest:
+	@python scripts/drum_tab.py --doctest
+	@python scripts/rhythms.py
 
 blog:
-	mynt gen blog blog/_build -f
+	@cd site && bundle exec jekyll build
 
 blog_upload: blog
 	s3cmd sync blog/_build/ s3://davepoulter.net/
 	s3cmd sync blog/_build/ s3://www.davepoulter.net/
+
+serve:
+	@cd site && bundle exec jekyll serve -w
