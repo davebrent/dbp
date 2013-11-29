@@ -1,5 +1,6 @@
 blog/_build/
 blog/_assets/css/screen.css
+sketches/*/build-tmp/
 env/
 trunk/
 media/
