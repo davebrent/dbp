@@ -2,7 +2,6 @@
 
 #include "ofMain.h"
 #include "ofxMaxim.h"
-#include "maxiMFCC.h"
 
 
 class testApp : public ofBaseApp {
