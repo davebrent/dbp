@@ -8,8 +8,8 @@ blog:
 	@cd site && bundle exec jekyll build
 
 blog_upload: blog
-	s3cmd sync blog/_build/ s3://davepoulter.net/
-	s3cmd sync blog/_build/ s3://www.davepoulter.net/
+	s3cmd sync site/_site/ s3://davepoulter.net/
+	s3cmd sync site/_site/ s3://www.davepoulter.net/
 
 serve:
 	@cd site && bundle exec jekyll serve -w
