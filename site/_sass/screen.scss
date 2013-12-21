@@ -82,12 +82,30 @@ a:hover {
     @include trailer(0);
   }
 
+  h2 {
+    font-size: 16px;
+  }
+
   h3 {
     display: none;
   }
 
   .brand {
     float: left;
+  }
+
+  .navigation, .navigation li {
+    float: left;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-family: "Helvetica Neue", Helvetica;
+    font-weight: bold;
+  }
+
+  .navigation li {
+    margin-left: 20px;
+    line-height: 50px;
   }
 
   .menu {
@@ -139,6 +157,11 @@ pre {
       margin-top: 10px;
       width: 60px;
       height: auto;
+    }
+
+    .navigation li {
+      margin-left: 30px;
+      line-height: 80px;
     }
   }
 }
@@ -232,4 +255,33 @@ pre {
   @include leader(1);
   @include padding-trailer(0.25);
   @include padding-leader(1);
+}
+
+#gallery {
+  @include clearfix;
+  padding: 0 !important;
+  margin: 0 !important;
+
+  li {
+    @include trailer(1);
+    width: 47.5%;
+    float: left;
+  }
+
+  li:nth-child(even) {
+    margin-left: 5% !important;
+  }
+
+  img {
+    width: 100%;
+    margin: 0;
+    height: auto;
+    @include trailer(1);
+  }
+
+  ul, li {
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none;
+  }
 }

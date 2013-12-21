@@ -5,7 +5,6 @@ sketches/*/build-tmp/
 env/
 gems/
 trunk/
-media/
 .bundle/
 .sass-cache/
 .DS_Store
