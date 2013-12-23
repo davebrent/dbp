@@ -24,7 +24,7 @@ To use the python scripts it's best to use [virtualenv](https://pypi.python.org/
     source env/bin/activate
     pip install requirements.txt
 
-## Openframeworks
+### Openframeworks
 
 Clone this repository into the ``apps`` directory in your openframeworks installation.
 
