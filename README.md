@@ -18,3 +18,5 @@ To use the python scripts it's best to use [virtualenv](https://pypi.python.org/
     virtualenv env
     source env/bin/activate
     pip install requirements.txt
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/davebrent/dbp/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
