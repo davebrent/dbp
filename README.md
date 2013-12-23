@@ -29,5 +29,3 @@ To use the python scripts it's best to use [virtualenv](https://pypi.python.org/
 Clone this repository into the ``apps`` directory in your openframeworks installation.
 
     openFrameworks/apps
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/davebrent/dbp/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
