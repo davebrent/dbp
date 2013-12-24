@@ -4,6 +4,9 @@
 - src: /media/sliding_planes.png
   name: Sliding planes visualiser
 
+- src: /media/vanishing_point.png
+  name: Vanising point
+
 - src: /media/particle_visualiser.png
   name: Particle visualiser
 
