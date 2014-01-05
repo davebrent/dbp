@@ -7,11 +7,11 @@
     , probs_1 = [Dseq([1/16, 1/16], Drand([1, 2], inf))]
     , probs_2 = (1/4!8)
     , probs_3 = (1/8!8)
-    , probs_4 = (1/2!2);
+    , probs_4 = (1/2!8);
 
   var trigger = {
     TDuty.ar(
-      Dxrand(probs_2 + probs_3 ++ probs_1 ++ probs_4 * 1.25, inf),
+      Dxrand(probs_2 ++ probs_3 ++ probs_1 ++ probs_4 * 1.25, inf),
       0,
       Dwhite(0.5, 1, inf)
     )
