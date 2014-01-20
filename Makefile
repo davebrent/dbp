@@ -1,4 +1,10 @@
-.PHONY: blog blog_upload doctest serve
+.PHONY: blog cloc blog_upload doctest serve
+
+cloc:
+	@cloc . --exclude-dir=.git,env,trunk,bin,build-tmp \
+	        --exclude-lang=make \
+	        --skip-archive='(xcodeproj|plist|xconfig|class?)' \
+	        --force-lang="Lua",pd_lua
 
 doctest:
 	@python scripts/drum_tab.py --doctest
