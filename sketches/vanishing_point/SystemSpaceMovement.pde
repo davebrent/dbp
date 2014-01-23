@@ -1,7 +1,9 @@
 class SpaceMovementSystem implements ISystem {
+  // Update the vanishing point position.
+
   @Override
   public String[] components() {
-    return new String[] {"space", "position", "acceleration"};
+    return new String[] {"space", "position"};
   }
 
   @Override
@@ -11,7 +13,6 @@ class SpaceMovementSystem implements ISystem {
   @Override
   public void updateEntity(Space space, Entity entity) {
     CPosition position = entity.get(CPosition.class, "position");
-    CAcceleration acce = entity.get(CAcceleration.class, "acceleration");
     space.center = position.vectors.get(position.vectors.size() - 1);
     space.update();
   }

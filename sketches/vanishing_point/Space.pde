@@ -13,7 +13,7 @@ class Space {
   }
 
   public void update() {
-    space = toMatrix(width, height);
+    space = toMatrix(width * 0.75, height * 0.75);
   }
 
   public void update(float w, float h) {

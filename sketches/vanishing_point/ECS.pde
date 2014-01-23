@@ -20,6 +20,16 @@ class Entity {
     components = new ArrayList<AComponent>();
   }
 
+  public boolean hasComponent(String type) {
+    for (int i = 0; i < components.size(); i++) {
+      AComponent component = components.get(i);
+      if (component.identifier() == type) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   public void addComponent(AComponent component) {
     components.add(component);
   }

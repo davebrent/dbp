@@ -1,3 +1,31 @@
+class CRender extends AComponent {
+  float ellipse_size;
+  int mode;
+  boolean render_ellipse;
+  boolean render_lines;
+
+  CRender() {
+    ellipse_size = 4;
+    render_ellipse = true;
+    render_lines = true;
+    mode = 1;
+  }
+
+  CRender(int _mode) {
+    mode = _mode;
+  }
+
+  @Override
+  String identifier() {
+    return "render";
+  }
+
+  @Override
+  void update() {
+    // pass
+  }
+};
+
 class CSpace extends AComponent {
   @Override
   String identifier() {
@@ -12,9 +40,17 @@ class CSpace extends AComponent {
 
 class CColor extends AComponent {
   public color colour;
+  public boolean invert;
+  public float max_alpha;
+  public float min_alpha;
 
   CColor() {
-    colour = color(random(0, 20), random(180, 240), random(220, 255));
+    colour = color(random(0, 20),
+                   random(180, 240),
+                   random(220, 255));
+    invert = false;
+    max_alpha = 5;
+    min_alpha = 5;
   }
 
   CColor(color colour) {
@@ -22,7 +58,11 @@ class CColor extends AComponent {
   }
 
   public color fadeBy(float fade) {
-    return (colour & 0xffffff) | ((int) (255 * fade) << 24);
+    if (invert == true) {
+      fade = 1 - fade;
+    }
+
+    return (colour & 0xffffff) | ((int) (max_alpha * fade) + ((int) min_alpha) << 24);
   }
 
   @Override
@@ -40,7 +80,7 @@ class CStroke extends AComponent {
   public float strokeAmount;
 
   CStroke() {
-    strokeAmount = 0.5;
+    strokeAmount = 1.5;
   }
 
   CStroke(float _value) {
@@ -112,7 +152,11 @@ class CAxis extends AComponent {
   public boolean[] axis;
 
   CAxis() {
-    axis = randomDirections(false);
+    axis = new boolean[] {true, false, true};
+  }
+
+  CAxis(boolean[] _axis) {
+    axis = _axis;
   }
 
   CAxis(boolean randomize) {
