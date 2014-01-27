@@ -1,11 +1,11 @@
 import controlP5.*;
 import java.util.Arrays;
 
+PFont font;
 int agents = 2;
 int divisions = 3;
 
 World world;
-boolean gate;
 
 void setup() {
   size(1152, 480);
@@ -15,7 +15,8 @@ void setup() {
   rectMode(CENTER);
   frameRate(60);
 
-  gate = true;
+  font = createFont("Arial", 36);
+
   EntityFactory entityFactory = new EntityFactory(60, 6);
 
   world = new World(divisions);
@@ -43,4 +44,12 @@ void draw() {
     translate(width / 8, height / 8);
     world.update();
   popMatrix();
+
+  fill(20);
+  noStroke();
+  rect(10, height - 13, 150, 15);
+  textFont(font);
+  textSize(9);
+  fill(255);
+  text(frameRate + " fps", 10, height - 10);
 }
