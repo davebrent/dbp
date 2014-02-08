@@ -11,3 +11,4 @@ PIL==1.1.7
 scikits.audiolab==0.11.0
 requests==2.0.0
 pyquery==1.2.6
+python-rtmidi==0.4.3b1
