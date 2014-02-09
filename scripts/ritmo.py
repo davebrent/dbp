@@ -155,8 +155,6 @@ class TimeCode(object):
         self.ticks = 0
         self.bars = 0
         self.bar_changed = False
-        self.quarter_notes = 0
-        self.quarter_note_changed = False
         self.beats = 0
         self.beat_changed = False
         self.time = time.time()
@@ -165,16 +163,12 @@ class TimeCode(object):
         self.time = time.time()
         self.ticks += 1
 
-        if self.ticks % ppqn == 0 and not self.quarter_note_changed:
-            self.quarter_notes += 1
-            self.quarter_note_changed = True
-        elif self.ticks % ppqn == 1 and self.quarter_note_changed:
-            self.quarter_note_changed = False
+        ticks_per_beat = (ppqn * 4) / denominator
 
-        if self.quarter_notes % denominator == 0 and not self.beat_changed:
+        if self.ticks % ticks_per_beat == 0 and not self.beat_changed:
             self.beats += 1
             self.beat_changed = True
-        elif self.quarter_notes % denominator == 1 and self.beat_changed:
+        elif self.ticks % ticks_per_beat == 1 and self.beat_changed:
             self.beat_changed = False
 
         if self.beats % numerator == 0 and not self.bar_changed:
@@ -195,14 +189,14 @@ class MidiClock(object):
         """
         bpm -- Beats per minute.
         numerator -- The number of beats in a bar.
-        denominator -- Number of quarter notes in a beat..
+        denominator -- The type of note that consititutes a beat.
         ppqn -- Pulses per quarter note.
         wait -- Time in seconds to wait before checking ticks again.
 
         """
         self.bpm = bpm
         self.ppqn = ppqn
-        self.ticksize = get_ticksize_from_bpm(bpm, ppqn=self.ppqn)
+        self.ticksize = get_ticksize_from_bpm(self.bpm, ppqn=self.ppqn)
         self.numerator = numerator
         self.denominator = denominator
         self.wait = wait
@@ -216,6 +210,7 @@ class MidiClock(object):
 
         while True:
             if current - start >= self.ticksize:
+                self.ticksize = get_ticksize_from_bpm(self.bpm, ppqn=self.ppqn)
                 # Midi device is ticked first to process note off events,
                 # timecode is ticked last to update the latest position.
                 device.tick()
@@ -240,7 +235,7 @@ if __name__ == "__main__":
     logger.addHandler(logging.StreamHandler(sys.stdout))
 
     def main(device, timecode, clock):
-        if timecode.quarter_note_changed:
+        if timecode.beat_changed:
             device.note_on(note=54, duration=clock.ticksize)
 
     with connect(port_name="IAC Driver Bus 1") as device:
