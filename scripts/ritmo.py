@@ -1,12 +1,8 @@
 import contextlib
 import heapq
-import logging
 import time
 
 import rtmidi
-
-
-logger = logging.getLogger(__name__)
 
 
 class Heap(object):
@@ -56,10 +52,6 @@ class MidiDevice(object):
         self.note_off_heap = Heap(key=lambda note: note["duration"])
 
     def note_on(self, note=60, velocity=64, channel=0, duration=None):
-        self._log("debug", ("note_on: note={}, velocity={}, "
-                            "channel={}, duration={}".format(note, velocity,
-                                                             channel,
-                                                             duration)))
         self.connection.send_message([0x90 + channel, note, velocity])
         if duration:
             self.note_off_heap.push({"note": note,
@@ -67,8 +59,6 @@ class MidiDevice(object):
                                      "duration": duration + time.time()})
 
     def note_off(self, note=60, channel=0):
-        self._log("debug", "note_off: note={}, channel={}".format(
-            note, channel))
         self.connection.send_message([0x80 + channel, note, 0])
 
     def tick(self):
@@ -86,13 +76,8 @@ class MidiDevice(object):
             self.note_off(n, channel)
 
     def control(self, control=0, value=0, channel=0):
-        self._log("debug", "control: control={}, value={}, channel={}".format(
-            control, value, channel))
         self.connection.send_message([0x80 + channel,
                                       int(control), int(value)])
-
-    def _log(self, level, msg):
-        getattr(logger, level)("MidiDevice.{}".format(msg))
 
 
 @contextlib.contextmanager
@@ -114,7 +99,7 @@ def connect(port_name=None, connection_class=rtmidi.MidiOut,
     if not available_ports and not port_name:
         raise Exception("No midi ports available and no port_name specified.")
     elif not available_ports and port_name:
-        logger.info("Connecting on a virtual midi port {}.").format(port_name)
+        print("Connecting on a virtual midi port {}.").format(port_name)
         port_number = None
         connection.open_virtual_port(port_name)
     elif port_name:
@@ -125,8 +110,7 @@ def connect(port_name=None, connection_class=rtmidi.MidiOut,
             port_number = port
             connection.open_port(port)
             found = True
-            logger.info("{} ({}), on port {}.".format(class_name, port_name,
-                                                      port))
+            print("{} ({}), on port {}.".format(class_name, port_name, port))
             break
         if not found:
             raise Exception("Unable to find midi port {}".format(port_name))
@@ -134,7 +118,7 @@ def connect(port_name=None, connection_class=rtmidi.MidiOut,
         port_number = 0
         port_name = available_ports[port_number]
         connection.open_port(port_number)
-        logger.info("{} ({}), on port 0.".format(class_name, port_name))
+        print("{} ({}), on port 0.".format(class_name, port_name))
 
     device = device_class(connection)
 
@@ -143,8 +127,8 @@ def connect(port_name=None, connection_class=rtmidi.MidiOut,
     finally:
         device.all_notes_off()
         connection.close_port()
-        logger.info(("{} closed ({}), on port {}."
-                     .format(class_name, port_name, port_number)))
+        print(("{} closed ({}), on port {}.".format(
+            class_name, port_name, port_number)))
 
 
 class Transport(object):
@@ -211,9 +195,6 @@ class Clock(object):
         transport = Transport()
         start = current = time.time()
 
-        logger.info(("Clock.run: bpm={}, wait={}, ticksize={}"
-                     .format(self.bpm, self.wait, self.ticksize)))
-
         while True:
             if current - start >= self.ticksize:
                 self.ticksize = get_ticksize_from_bpm(self.bpm, ppqn=self.ppqn)
@@ -239,9 +220,6 @@ if __name__ == "__main__":
     |___|\____\_`%\_/%'_`%%|___|%%'|____|____\_________/
      `BB' `BBB'`BBBBBBB'    `B'     `BBBBBBB' `BBBBBBB'
     \n""")
-
-    logger.setLevel(logging.INFO)
-    logger.addHandler(logging.StreamHandler(sys.stdout))
 
     def main(device, transport, clock):
         if transport.beat_changed:
