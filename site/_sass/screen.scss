@@ -1,7 +1,8 @@
 @import "compass";
 
-$base-font-size: 19px;
-$base-line-height: 30px;
+$base-font-size: 13px;
+$base-line-height: 19px;
+$rhythm-unit: "px";
 
 $color-black: #333;
 $color-grey: #bbb;
@@ -17,52 +18,34 @@ body, html {
 }
 
 body {
-  font-family: Georgia;
+  font-family: "Oxygen Mono", sans-serif;
   color: $color-black;
-  text-rendering: optimizeLegibility;
-  background-color: #fff;
+}
+
+ul {
+  margin: 0;
+  @include apply-side-rhythm-border(left, 0, 1);
+}
+
+ul, p, dd, ol, pre, code {
+  font-family: "Oxygen Mono", sans-serif;
+  @include adjust-font-size-to($base-font-size, 1);
+  @include rhythm(0, 0, 0, 1);
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Helvetica Neue", Helvetica;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  text-rendering: optimizeLegibility;
+  margin: 0;
+  @include trailer(1);
 }
 
-h1 {
-  @include adjust-font-size-to(25px, 1);
-  @include rhythm(0, 0, 0, 1, 25px);
-}
-
-h2 {
-  @include adjust-font-size-to(22px, 1);
-  @include rhythm(0, 0, 0, 1, 22px);
-}
-
-h3 {
-  @include adjust-font-size-to(20px, 1);
-  @include rhythm(0, 0, 0, 1, 20px);
-}
-
-h4 {
-  @include adjust-font-size-to(18px, 1);
-  @include rhythm(0, 0, 0, 1, 18px);
-}
-
-body, ul, p, dd, ol, pre {
-  @include adjust-font-size-to(18px, 1);
-  @include rhythm(0, 0, 0, 0.5, 18px);
-}
-
-code {
-  @include adjust-font-size-to(15px, 0.5);
-  @include rhythm(0, 0, 0, 1, 15px);
-}
-
-h2 {
-  font-weight: 200;
-}
+h1 { @include adjust-font-size-to(24px, 2); }
+h2 { @include adjust-font-size-to(16px, 1); }
+h3 { @include adjust-font-size-to(14px, 1); }
+h4 { @include adjust-font-size-to(13px, 1); }
 
 a {
-  text-decoration: none;
   color: $color-anchor;
 }
 
@@ -70,190 +53,58 @@ a:hover {
   color: $color-anchor-hover !important;
 }
 
+#container {
+  @include padding-leader(1);
+  margin: 0 auto;
+  width: 90%;
+}
+
+@media #{$small} {
+  #container {
+    width: 640px;
+    margin: 0;
+    @include apply-side-rhythm-border(left, 0, 2);
+  }
+}
 
 #header {
-  @include trailing-border(2px);
-  @include trailer(1);
   @include clearfix;
-
-  h1, h2, a {
-    color: $color-black !important;
-    @include leader(0);
-    @include trailer(0);
-  }
-
-  h2 {
-    font-size: 16px;
-  }
-
-  h3 {
-    display: none;
-  }
 
   .brand {
     float: left;
   }
 
-  .navigation, .navigation li {
+  .navigation,
+  .navigation li {
+    @include adjust-font-size-to($base-font-size, 2);
     float: left;
-    margin: 0;
-    padding: 0;
     list-style: none;
     font-family: "Helvetica Neue", Helvetica;
     font-weight: bold;
   }
 
   .navigation li {
-    margin-left: 20px;
-    line-height: 50px;
-  }
-
-  .menu {
-    float: right;
-  }
-
-  .link {
-    float: right;
-
-    img {
-      margin-top: 10px;
-      width: 40px;
-      height: auto;
-    }
-  }
-
-  .menu {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-}
-
-pre {
-  overflow-y: scroll;
-}
-
-@media #{$small} {
-  pre {
-    overflow: visible;
-  }
-}
-
-// header
-@media #{$small} {
-  #header {
-    h1 {
-      @include adjust-font-size-to(50px, 2);
-    }
-
-    h3 {
-      @include trailer(0);
-      display: block;
-      color: $color-grey;
-      font-weight: normal;
-    }
-
-    .link img {
-      margin-top: 10px;
-      width: 60px;
-      height: auto;
-    }
-
-    .navigation li {
-      margin-left: 30px;
-      line-height: 80px;
-    }
-  }
-}
-
-.post-header > * {
-  @include leader(0);
-  @include trailer(0);
-}
-
-.post-header {
-  @include trailer(1);
-
-  a {
-    color: $color-black;
-  }
-}
-
-@media #{$small} {
-  .post-header {
-    @include apply-side-rhythm-border(left, 2px, 1);
-    margin-left: -1.333em;
-  }
-}
-
-#container {
-  @include padding-leader(1);
-  width: 90%;
-  margin: 0 auto;
-}
-
-@media #{$small} {
-  #container {
-    width: 580px;
+    @include apply-side-rhythm-border(left, 0, 1);
   }
 }
 
 .post-body {
-  a {
-    color: $color-anchor-hover;
-  }
-
   img {
-    height: auto;
-    max-width: 400px;
+    max-width: 100%;
     margin: 0 auto;
     display: block;
   }
 
-  iframe {
-    @include trailer(0.5);
+  iframe, blockquote {
+    @include trailer(1);
   }
 
   blockquote {
+    @include apply-side-rhythm-border(left, 0, 1);
     font-style: italic;
     color: lighten($color-black, 10%);
+    margin: 0;
   }
-
-  h2, h3, h4, h5, h6 {
-    @include trailer(0.5);
-  }
-}
-
-@media #{$small} {
-  .post-body img {
-    max-width: 100%;
-  }
-}
-
-#breadcrumbs {
-  @include clearfix;
-  padding: 0;
-  list-style: none;
-
-  li {
-    float: left;
-    margin-left: 5px;
-  }
-
-  li:first-child {
-    margin-left: 0;
-  }
-
-  li:after {
-    content: " / "
-  }
-}
-
-#footer {
-  border-top: 1px solid $color-black;
-  @include leader(1);
-  @include padding-trailer(0.25);
-  @include padding-leader(1);
 }
 
 #gallery {
