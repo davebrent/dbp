@@ -9,3 +9,8 @@ trunk/
 .sass-cache/
 .DS_Store
 *.pyc
+*.egg-info
+*.so
+*.db
+.vagrant
+build

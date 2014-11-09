@@ -1,0 +1,29 @@
+#!/bin/bash
+
+database=demsyn.db
+table=tiles
+
+if [ $# -eq 0 ]
+  then
+    echo "Missing required argument (dems.txt)"
+    exit 0
+fi
+
+spatialite $database "SELECT InitSpatialMetaData();"
+
+while read line
+do
+    tmpfile1=`mktemp -t dem`
+    tmpfile2=`mktemp -t dem`
+
+    wget --progress=bar:force -O $tmpfile1 $line
+    gdalwarp -t_srs EPSG:3857 $tmpfile1 $tmpfile2
+    demsyn colorize $tmpfile2 $tmpfile1
+    rasterlite_load -d $database -T $table -f $tmpfile1 -i PNG -v
+
+    rm $tmpfile1
+    rm $tmpfile2
+done < $1
+
+rasterlite_pyramid -d $database -T $table -i PNG -v
+rasterlite_topmost -d $database -T $table -i PNG -v

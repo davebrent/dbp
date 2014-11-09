@@ -1,0 +1,24 @@
+# vi: set ft=ruby :
+VAGRANTFILE_API_VERSION = "2"
+
+$script = <<SCRIPT
+sudo apt-get update
+sudo apt-get -y install build-essential python-software-properties
+sudo apt-get install libtiff4 libtiff4-dev
+sudo apt-get -y install git wget vim sqlite3
+sudo add-apt-repository ppa:ubuntugis/ppa -y
+sudo apt-get update
+sudo apt-get -y install libgdal-dev gdal-bin
+sudo apt-get -y install libspatialite5 spatialite-bin
+sudo apt-get -y install librasterlite1 librasterlite-dev rasterlite-bin
+SCRIPT
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.box = "precise64"
+  config.vm.box_url = "http://files.vagrantup.com/precise64.box"
+  config.vm.network "forwarded_port", guest: 8080, host: 8080
+  config.vm.provision "shell", privileged: false, inline: $script
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 2048
+  end
+end
