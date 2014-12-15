@@ -194,7 +194,6 @@ def backup(ctx, label, port, selection):
             data += bytearray(result)
             hashed.update(result)
         hashed = hashed.hexdigest()
-        print(hashed)
 
     connection.execute("""
     INSERT INTO backups (selection, label, port, hash, data)
@@ -245,7 +244,6 @@ def info(ctx):
         size = "{:,}".format(len(data))
         click.echo("{0: <4} {1: <8} {2: <9} {3: <12} {4: <7}".format(
             _id, date, selection, port, size))
-        print(hashed)
 
     connection.close()
 
