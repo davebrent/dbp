@@ -19,3 +19,8 @@ port: 4000
 baseurl: /
 url: http://www.davepoulter.net
 lsi: false
+
+exclude:
+  - Makefile
+  - Gemfile
+  - Gemfile.lock
