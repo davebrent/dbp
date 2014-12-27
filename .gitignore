@@ -1,3 +1,4 @@
+.deps
 bin/
 site/_site/
 site/static/css/screen.css
@@ -9,3 +10,9 @@ trunk/
 .sass-cache/
 .DS_Store
 *.pyc
+
+openframeworks/
+!openframeworks/apps/
+!openframeworks/Makefile
+
+processing/libraries/
