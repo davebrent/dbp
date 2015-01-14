@@ -14,10 +14,7 @@ import java.util.Collections;
 
 
 class Cell {
-  public boolean north;
-  public boolean east;
-  public boolean south;
-  public boolean west;
+  public boolean north, south, east, west;
   public boolean visited;
   public int x;
   public int y;
@@ -30,11 +27,6 @@ class Cell {
     east = false;
     south = false;
     west = false;
-  }
-
-  @Override
-  String toString () {
-    return "[ " + x + ", " + y + " ]";
   }
 };
 
@@ -63,15 +55,18 @@ ArrayList<Cell> getNeighbours (Cell cell, Cell[][] cells) {
   return result;
 }
 
+int grid;
 Cell[][] cells;
 Stack<Cell> stack;
 
 void setup () {
+  grid = 24;
   size(512, 512);
 
+  int count = 0;
   stack = new Stack<Cell>();
+  cells = new Cell[grid][grid];
 
-  cells = new Cell[32][32];
   for (int x = 0; x < cells.length; x++) {
     for (int y = 0; y < cells[x].length; y++) {
       cells[x][y] = new Cell(x, y);
@@ -79,83 +74,72 @@ void setup () {
   }
 
   Cell cell = cells[0][0];
+  cell.visited = true;
+  stack.push(cell);
 
-  while (true) {
-    if (cell.visited) {
-      stack.pop();
-      cell = stack.pop();
-      cell.visited = false;
-
-      if (stack.empty()) {
-        break;
-      } else {
-        continue;
-      }
-    }
-
-    cell.visited = true;
-    stack.push(cell);
-
+  while (!stack.empty()) {
     ArrayList<Cell> neighbours = getNeighbours(cell, cells);
-    Collections.shuffle(neighbours);
 
-    for (Cell next : neighbours) {
-      if (next.visited) {
-        continue;
-      }
-
-      if (next.x == cell.x) {
-        if (next.y + 1 == cell.y) {
-          // Next is above
-          cell.north = true;
-          next.south = true;
-        } else {
-          // Next is below
-          cell.south = true;
-          next.north = true;
-        }
-      } else {
-        if (next.x - 1 == cell.x) {
-          // Next is to the right
-          cell.east = true;
-          next.west = true;
-        } else {
-          // Next is to the left
-          cell.west = true;
-          next.east = true;
-        }
-      }
-
-      cell = next;
-      break;
+    if (neighbours.size() == 0) {
+      cell = stack.pop();
+      continue;
     }
+
+    Collections.shuffle(neighbours);
+    Cell next = neighbours.get(0);
+
+    if (next.x == cell.x) {
+      if (next.y + 1 == cell.y) {
+        // Next is above
+        cell.north = true;
+        next.south = true;
+      } else {
+        // Next is below
+        cell.south = true;
+        next.north = true;
+      }
+    } else {
+      if (next.x - 1 == cell.x) {
+        // Next is to the right
+        cell.east = true;
+        next.west = true;
+      } else {
+        // Next is to the left
+        cell.west = true;
+        next.east = true;
+      }
+    }
+
+    next.visited = true;
+    stack.push(cell);
+    cell = next;
   }
 }
 
 void draw () {
   background(200);
-  int s = 16;
+  float s = (float) width / (float) grid;
 
   for (int x = 0; x < cells.length; x++) {
     for (int y = 0; y < cells[x].length; y++) {
       Cell cell = cells[x][y];
 
-      if (cell.north) {
+      if (!cell.north) {
         line(cell.x * s, cell.y * s,
              (cell.x * s) + s, cell.y * s);
       }
 
-      if (cell.south) {
+      if (!cell.south) {
         line(cell.x * s, (cell.y * s) + s,
              (cell.x * s) + s, (cell.y * s) + s);
       }
 
-      if (cell.east) {
+      if (!cell.east) {
         line((cell.x * s) + s, cell.y * s,
              (cell.x * s) + s, (cell.y * s) + s);
       }
 
-      if (cell.west) {
+      if (!cell.west) {
         line(cell.x * s, cell.y * s,
              cell.x * s, (cell.y * s) + s);
       }
