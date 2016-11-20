@@ -1,0 +1,73 @@
+#N canvas 494 146 780 585 10;
+#X obj 449 104 phasor~;
+#X obj 465 484 outlet~;
+#X obj 482 464 outlet~;
+#X obj 499 144 r \$0-osc1-ratio;
+#X obj 515 184 r \$0-osc1-mod;
+#X obj 532 204 r \$0-osc1-clip;
+#X obj 449 64 r \$0-freq;
+#X obj 74 86 vsl 15 128 0 127 0 0 \$0-freq \$0-freq-gui F 5 8 0 10
+-262144 -1 -1 0 1;
+#X obj 104 86 vsl 15 128 1 12 0 0 \$0-osc1-ratio \$0-osc1-ratio-gui
+R 5 8 0 10 -262144 -1 -1 0 1;
+#X obj 124 86 vsl 15 128 0 12 0 0 \$0-osc1-mod \$0-osc1-mod-gui M 5
+8 0 10 -262144 -1 -1 1058 1;
+#X obj 144 86 vsl 15 128 0 1 0 0 \$0-osc1-clip \$0-osc1-clip-gui C
+5 8 0 10 -262144 -1 -1 0 1;
+#X obj 164 86 vsl 15 128 0 1 0 0 \$0-osc1-mix \$0-osc1-mix-gui Mx 3
+8 0 10 -262144 -1 -1 6350 1;
+#X obj 214 86 vsl 15 128 1 12 0 0 \$0-osc2-ratio \$0-osc2-ratio-gui
+R 5 8 0 10 -262144 -1 -1 0 1;
+#X obj 234 86 vsl 15 128 0 12 0 0 \$0-osc2-mod \$0-osc2-mod-gui M 5
+8 0 10 -262144 -1 -1 1058 1;
+#X obj 254 86 vsl 15 128 0 1 0 0 \$0-osc2-clip \$0-osc2-clip-gui C
+5 8 0 10 -262144 -1 -1 0 1;
+#X obj 274 86 vsl 15 128 0 1 0 0 \$0-osc2-mix \$0-osc2-mix-gui Mx 3
+8 0 10 -262144 -1 -1 6350 1;
+#X obj 64 295 f \$0;
+#X obj 64 275 loadbang;
+#X obj 449 84 mtof;
+#X obj 499 304 r \$0-osc2-ratio;
+#X obj 515 344 r \$0-osc2-mod;
+#X obj 532 364 r \$0-osc2-clip;
+#X obj 184 86 vsl 15 128 0 1 0 0 \$0-osc1-phase \$0-osc1-phase-gui
+P 5 8 0 10 -262144 -1 -1 6350 1;
+#X obj 294 86 vsl 15 128 0 1 0 0 \$0-osc2-phase \$0-osc2-phase-gui
+P 5 8 0 10 -262144 -1 -1 6350 1;
+#X obj 449 264 lissajous-oscillator;
+#X obj 549 224 r \$0-osc1-mix;
+#X text 212 67 Oscillator 2;
+#X obj 549 384 r \$0-osc2-mix;
+#X text 102 67 Oscillator 1;
+#X obj 566 244 r \$0-osc1-phase;
+#X obj 566 404 r \$0-osc2-phase;
+#X msg 64 315 \; \$1-freq 32 \; \$1-osc1-ratio-gui 1 \; \$1-osc1-mod-gui
+1 \; \$1-osc1-clip-gui 0 \; \$1-osc1-mix-gui 0.5 \; \$1-osc1-phase-gui
+0.5 \; \$1-osc2-ratio-gui 1 \; \$1-osc2-mod-gui 1 \; \$1-osc2-clip-gui
+0 \; \$1-osc2-mix-gui 0.5 \; \$1-osc2-phase-gui 0.5 \;;
+#X obj 499 164 int;
+#X obj 499 324 int;
+#X obj 449 424 lissajous-oscillator;
+#X connect 0 0 24 0;
+#X connect 3 0 32 0;
+#X connect 4 0 24 4;
+#X connect 5 0 24 5;
+#X connect 6 0 18 0;
+#X connect 16 0 31 0;
+#X connect 17 0 16 0;
+#X connect 18 0 0 0;
+#X connect 19 0 33 0;
+#X connect 20 0 34 4;
+#X connect 21 0 34 5;
+#X connect 24 0 34 0;
+#X connect 24 1 34 1;
+#X connect 24 2 34 2;
+#X connect 25 0 24 6;
+#X connect 27 0 34 6;
+#X connect 29 0 24 7;
+#X connect 30 0 34 7;
+#X connect 32 0 24 3;
+#X connect 33 0 34 3;
+#X connect 34 1 1 0;
+#X connect 34 2 2 0;
+#X coords 0 -1 1 1 335 162 2 64 64;
